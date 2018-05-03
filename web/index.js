@@ -1,6 +1,29 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express(); //"app" criado para se usar o express
+var pg = require('knex')({client: 'pg'});
+
+//CONEXÃO COM O BANCO
+var knex = require('knex')({
+  client: 'pg',
+  version: '10.3',
+  connection: {
+    host : 'localhost',
+    user : 'postgres',
+    password : 'postgres',
+    database : 'projetoMDS'
+  }
+});
+
+knex('org_orgao').insert({
+	org_idorgao: '1234', 
+	org_nome : 'caesb', 
+	org_descricao : 'agua'
+}).then(function(){
+	knex.select().from('org_orgao').then(function(ORG_ORGAO){
+		console.log(ORG_ORGAO);
+	})
+})
 
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(express.static(__dirname + '/public'));
