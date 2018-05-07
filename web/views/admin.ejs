@@ -1,53 +1,69 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Admin Page</title>
-	<link rel="stylesheet" type="text/css" href="css/bulma.css">
-</head>
-<body>
-	<section class="hero is-dark">
-		<div class="hero-body">
-			<div class="container">
-	      	<h1 class="title">
-	        	Administração da Plataforma
-	      	</h1>
-	    	</div>
-  		</div>
-	</section>
-
-
-  <aside class="column is-3 section is-hidden-mobile">
-    <p class="menu-label is-hidden-touch">Navegação</p>
-    <ul class="menu-list">
-      <li>
-        <a href="#" class="">
-          <span class="icon"><i class="fa fa-home"></i></span> Usuários
-        </a>
-      </li>
-      <li>
-        <a href="#" >
-          <span class="icon"><i class="fa fa-table"></i></span> Denúnicas
-        </a>
-
-        <ul>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+       #map {
+        height: 1000px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+      <ul id="slide-out" class="sidenav sidenav-fixed">
+      <li><a href="#!">Denuncias</a></li>
+      <li><a href="/admin">Mapa</a></li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
           <li>
-            <a href="#">
-              <span class="icon is-small"><i class="fa fa-link"></i></span> Homologar Denúncias
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="icon is-small"><i class="fa fa-link"></i></span> Link2
-            </a>
+            <a class="collapsible-header"><i class="material-icons">arrow_drop_down</i>Desordem</a>
+            <div class="collapsible-body">
+              <ul>
+                <li><a href="/desordem/new">Criar desordem</a></li>
+                <li><a href="#!">Alterar desordem</a></li>
+                <li><a href="#!">Apagar desordem</a></li>
+              </ul>
+            </div>
           </li>
         </ul>
       </li>
-      <li>
-        <a href="#" class="">
-          <span class="icon"><i class="fa fa-info"></i></span>Gráficos
-        </a>
-      </li>
     </ul>
-  </aside>
-</body>
+
+    <div id="map"></div>
+    <script type="text/javascript" src="js/init_map.js"></script>
+    
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdFqB_TkDKYojffKxjX-lWgTWGJVMBKTM&callback=initMap">
+    </script>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script>
+    <script type="text/javascript">
+    // SIDEBAR
+      document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems, options);
+      });
+
+      $(document).ready(function(){
+      $('.sidenav').sidenav();
+      });
+
+       document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.collapsible');
+          var instances = M.Collapsible.init(elems, options);
+        });
+
+        // Or with jQuery
+
+        $(document).ready(function(){
+          $('.collapsible').collapsible();
+        });
+      
+    </script>
+  </body>
 </html>

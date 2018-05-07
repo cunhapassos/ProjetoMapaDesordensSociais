@@ -26,6 +26,10 @@ var knex = require('knex')({
   }
 });
 
+// knex.select().from('org_orgao').then(function(result){
+// 	console.log(result[0].org_nome);
+// });
+
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
@@ -34,7 +38,29 @@ app.engine('html', require('ejs').renderFile);
 
 app.get("/", function(req,res){
 	sess = req.session;
-	res.render('welcome');
+
+	if(sess.email){
+		redirect("admin");
+	}
+	else{
+		res.render('login', {failed : 0});
+	}
+	
+});
+
+app.get("/desordem/new", function(req,res){
+	sess = req.session;
+
+	if(sess.email){
+		var orgaos_result;
+
+		knex.select().from('org_orgao').then(function(result){
+			//orgaos_result = result;
+			res.render("new_desordem", {orgaos : result });
+		})		
+	}else{
+		res.redirect("../login");
+	}
 });
 
 app.get("/login", function(req,res){
@@ -44,11 +70,34 @@ app.get("/login", function(req,res){
 		res.render('login', {failed : 0});
 	}
 	else{
-		res.render('login', {failed : 0});
+		res.render('admin', {failed : 0});
 	}
 
 });
 
+app.post("/desordem/create",function(req,res){
+	
+	var id = req.body.id;
+	var tipo = req.body.tipo;
+	var descricao = req.body.descricao;
+	var natureza = req.body.natureza;
+	var orgao = req.body.orgao;
+	orgao = parseInt(orgao);
+
+	knex('desordem').insert({
+		des_iddesordem: id,
+		des_tipo: tipo,
+		des_natureza: natureza,
+		des_descricao: descricao,
+		org_idorgao: orgao
+	}).then(function(){
+		res.redirect("../admin");
+	}).catch(function(error){
+		console.log(error);
+		res.redirect("new");
+	});
+
+})
 			
 // console.log(aux);
 
@@ -71,7 +120,7 @@ app.post("/login", function(req,res){
 		}
 		else{
 			sess.email = email;
-			res.render("admin");
+			res.redirect("admin");
 		}
 	});
 });
@@ -86,9 +135,6 @@ app.get("/admin", function(req,res){
 		res.render("login", {failed : 0});
 	}
 });
-
-var senha = md5("123456");
-console.log(senha);
 
 app.listen('3000', () => { //abrindo a aplicação na porta 3000
 	console.log("Server started");
