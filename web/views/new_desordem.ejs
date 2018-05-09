@@ -9,24 +9,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
-       <ul id="slide-out" class="sidenav sidenav-fixed">
-      <li><a href="#!">Denuncias</a></li>
-      <li><a href="/admin">Mapa</a></li>
-      <li class="no-padding">
-        <ul class="collapsible collapsible-accordion">
-          <li>
-            <a class="collapsible-header"><i class="material-icons">arrow_drop_down</i>Desordem</a>
-            <div class="collapsible-body">
-              <ul>
-                <li><a href="/desordem/new">Criar desordem</a></li>
-                <li><a href="#!">Alterar desordem</a></li>
-                <li><a href="#!">Apagar desordem</a></li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </li>
-    </ul>
+    
+     <%- include sidenav.ejs %>
 
  <div class="row" id="fora_sidenav" style="margin-bottom: 0;">
     <form class="col s12" method="post" action="/desordem/create">
@@ -77,33 +61,7 @@
     
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="../js/materialize.js"></script>
-    <script type="text/javascript">
-    // SIDEBAR
-      document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.sidenav');
-      var instances = M.Sidenav.init(elems, options);
-      });
-
-      $(document).ready(function(){
-      $('.sidenav').sidenav();
-      });
-
-       document.addEventListener('DOMContentLoaded', function() {
-          var elems = document.querySelectorAll('.collapsible');
-          var instances = M.Collapsible.init(elems, options);
-        });
-
-        // Or with jQuery
-
-        $(document).ready(function(){
-          $('.collapsible').collapsible();
-        });
-
-        $(document).ready(function(){
-          $('select').formSelect();
-        });
-      
-    </script>
+    <script type="text/javascript" src="../js/init_dom.js"></script>
     <script type="text/javascript">
       if (failed == 1) {
         alert("Erro ao inserir na base de dados");

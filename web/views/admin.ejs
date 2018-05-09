@@ -8,32 +8,18 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
        #map {
-        height: 1000px;
-        width: 100%;
+        height: 650px;
+        /*width: 100%;*/
        }
     </style>
   </head>
   <body>
-      <ul id="slide-out" class="sidenav sidenav-fixed">
-      <li><a href="#!">Denuncias</a></li>
-      <li><a href="/admin">Mapa</a></li>
-      <li class="no-padding">
-        <ul class="collapsible collapsible-accordion">
-          <li>
-            <a class="collapsible-header"><i class="material-icons">arrow_drop_down</i>Desordem</a>
-            <div class="collapsible-body">
-              <ul>
-                <li><a href="/desordem/new">Criar desordem</a></li>
-                <li><a href="#!">Alterar desordem</a></li>
-                <li><a href="#!">Apagar desordem</a></li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </li>
-    </ul>
+    
+    <%- include sidenav.ejs %>
 
-    <div id="map"></div>
+    <main>
+      <div id="map"></div>
+    </main>
     <script type="text/javascript" src="js/init_map.js"></script>
     
     <script async defer

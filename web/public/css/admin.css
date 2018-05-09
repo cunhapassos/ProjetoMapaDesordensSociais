@@ -1,3 +1,18 @@
 .material-icons{
 	margin-right: 2px !important;
 }
+
+.sidenav{
+	padding-top: 56px;
+	/*width: 250px !important;*/
+}
+
+header, main, footer {
+  padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}

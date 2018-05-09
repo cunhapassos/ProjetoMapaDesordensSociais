@@ -6,6 +6,11 @@ var session = require('express-session');
 var md5 = require('md5');
 
 var sess;
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json());
+app.set("view engine", "ejs");
+app.engine('html', require('ejs').renderFile);
 
 app.use(session({
 	secret : "shss",
@@ -26,15 +31,6 @@ var knex = require('knex')({
   }
 });
 
-// knex.select().from('org_orgao').then(function(result){
-// 	console.log(result[0].org_nome);
-// });
-
-app.use(bodyParser.urlencoded({ extended: false}));
-app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.json());
-app.set("view engine", "ejs");
-app.engine('html', require('ejs').renderFile);
 
 app.get("/", function(req,res){
 	sess = req.session;
@@ -98,6 +94,17 @@ app.post("/desordem/create",function(req,res){
 	});
 
 })
+
+app.post("/desordem/delete", function(req,res){
+
+	var id_desordem = req.body.id_desordem;
+	
+	knex('desordem')
+	.where('des_iddesordem', id_desordem)
+	.del().then(function(){
+		res.redirect("/desordem/delete");
+	})
+})
 			
 // console.log(aux);
 
@@ -135,6 +142,19 @@ app.get("/admin", function(req,res){
 		res.render("login", {failed : 0});
 	}
 });
+
+app.get("/desordem/delete", function(req,res){
+	sess = req.session;
+
+	if (sess.email) {
+		knex.select().from('desordem').then(function(desordens){
+			res.render("delete_desordem", {desordens : desordens});
+		});
+	}
+	else{
+		res.redirect("../login");
+	}
+})
 
 app.listen('3000', () => { //abrindo a aplicação na porta 3000
 	console.log("Server started");
