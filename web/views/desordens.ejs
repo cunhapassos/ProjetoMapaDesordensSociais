@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="../css/materialize.css">
     <link rel="stylesheet" type="text/css" href="../css/admin.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../css/desordem.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
 	<%- include sidenav.ejs %>
@@ -19,7 +19,7 @@
 			          <th>Natureza</th>
 			          <th>Descrição</th>
 			          <th>orgao</th>
-			          <th>Apagar</th>
+			          <th></th>
 			      </tr>
 			    </thead>
 
@@ -31,7 +31,7 @@
 			        <td><%= desordens[i].des_natureza %></td>
 			        <td><%= desordens[i].des_descricao %></td>
 			    	<td><%= desordens[i].org_idorgao%></td>
-			    	<td><button name="id_desordem" type="submit" value=<%= desordens[i].des_iddesordem %> class="btn-flat"><i class="clear small material-icons">clear</i></button></td>
+			    	<td><button name="id_desordem" type="submit" value=<%= desordens[i].des_iddesordem %> class="btn-flat"><i class="clear small material-icons">clear</i></button><a name="id_desordem" href="/desordens/<%= desordens[i].des_iddesordem %>/edit" class="btn-flat"><i class="edit small material-icons">edit</i></a></td>
 			      </tr>
 
 			    <% } %>

@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="../css/materialize.css">
-    <link rel="stylesheet" type="text/css" href="../css/admin.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin.css">
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
@@ -13,22 +13,22 @@
      <%- include sidenav.ejs %>
 
  <div class="row" id="fora_sidenav" style="margin-bottom: 0;">
-    <form class="col s12" method="post" action="/desordem/create">
+    <form class="col s12" method="post" action="/desordens/<%= desordem.des_iddesordem %>?_method=PUT">
       <div class="row">
         <div class="input-field col s6">
-          <input placeholder="tipo" name="tipo" type="text" class="validate">
+          <input value=<%= desordem.des_tipo %> name="tipo" type="text" class="validate">
           <label for="first_name">Tipo</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input placeholder="natureza" name="natureza" type="text" class="validate">
+          <input value=<%= desordem.des_natureza %> name="natureza" type="text" class="validate">
           <label for="first_name">Natureza</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <textarea  placeholder="descrição" name="descricao" type="text"  class="materialize-textarea"></textarea>
+          <textarea  name="descricao" type="text"  class="materialize-textarea"><%= desordem.des_tipo %></textarea>
           <label for="first_name">Descrição</label>
         </div>
       </div>
@@ -38,8 +38,11 @@
           <option value="" disabled selected>Qual órgao</option>
           <% if(orgaos){ 
               for(var i = 0; i < orgaos.length; i++){%>
+                  <% if(orgaos[i].org_idorgao == desordem.org_idorgao){ %>
+                    <option value=<%= orgaos[i].org_idorgao %> selected ><%= orgaos[i].org_nome %></option>
+                  <% }else{ %>
                   <option value=<%= orgaos[i].org_idorgao %> ><%= orgaos[i].org_nome %></option>
-              <% }} %>
+              <% }}} %>
         </select>
         <label>Orgão</label>
       </div>
@@ -53,9 +56,9 @@
     </form>
   </div>
     
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="../js/materialize.js"></script>
-    <script type="text/javascript" src="../js/init_dom.js"></script>
+    <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../js/materialize.js"></script>
+    <script type="text/javascript" src="../../js/init_dom.js"></script>
     <script type="text/javascript">
       if (failed == 1) {
         alert("Erro ao inserir na base de dados");

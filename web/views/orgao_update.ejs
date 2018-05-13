@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin.css">
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body>
+    
+     <%- include sidenav.ejs %>
+
+ <div class="row" id="fora_sidenav" style="margin-bottom: 0;">
+    <form class="col s12" method="post" action="/orgaos/<%= orgao.org_idorgao %>?_method=PUT">
+      <div class="row">
+        <div class="input-field col s6">
+          <input value=<%= orgao.org_nome %> name="nome" type="text" class="validate">
+          <label for="first_name">Nome</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <textarea  name="descricao" type="text"  class="materialize-textarea"><%= orgao.org_descricao %></textarea>
+          <label for="first_name">Descrição</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </form>
+  </div>
+    
+    <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../js/materialize.js"></script>
+    <script type="text/javascript" src="../../js/init_dom.js"></script>
+    <script type="text/javascript">
+      if (failed == 1) {
+        alert("Erro ao inserir na base de dados");
+      }
+    </script>
+  </body>
+</html>
