@@ -12,6 +12,7 @@
     "express-sanitizer": "^1.0.4",
     "express-session": "^1.15.6",
     "knex": "^0.14.6",
+    "knex-postgis": "^0.6.0",
     "md5": "^2.2.1",
     "method-override": "^2.3.10",
     "nodemon": "^1.17.3",
