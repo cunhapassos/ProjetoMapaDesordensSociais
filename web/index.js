@@ -69,7 +69,7 @@ app.get("/login", function(req,res){
 		res.render('login', {failed : 0});
 	}
 	else{
-		res.render('admin', {failed : 0});
+		res.redirect('admin');
 	}
 
 });
