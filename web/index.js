@@ -11,6 +11,7 @@ var expressSanitizer = require("express-sanitizer");
 
 var desordemRouter = require("./routes/desordem.js");
 var orgaoRouter = require("./routes/orgaos.js");
+var usuarioRouter = require("./routes/usuarios.js");
 
 var sess;
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -125,6 +126,7 @@ function FeatureCollection(){
 
 app.use(orgaoRouter);
 app.use(desordemRouter);
+app.use(usuarioRouter);
 
 app.listen('3000', () => { //abrindo a aplicação na porta 3000
 	console.log("Server started");

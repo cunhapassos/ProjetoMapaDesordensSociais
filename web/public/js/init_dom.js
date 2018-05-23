@@ -1,24 +1,19 @@
-// SIDEBAR
+
+$(document).ready(function(){
+
+	$('.date').mask('00/00/0000');
+	$('.cpf').mask('000.000.000-00', {reverse: true});
+	$('.phone').mask('(00) 00000-0000');
+
+
+});
+
 document.addEventListener('DOMContentLoaded', function() {
-var elems = document.querySelectorAll('.sidenav');
-var instances = M.Sidenav.init(elems, options);
-});
 
-$(document).ready(function(){
-$('.sidenav').sidenav();
-});
+	$('.sidenav').sidenav();
+	$('.collapsible').collapsible();
+	$('select').formSelect();
 
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.collapsible');
-  var instances = M.Collapsible.init(elems, options);
-});
+})
 
-// Or with jQuery
 
-$(document).ready(function(){
-  $('.collapsible').collapsible();
-});
-
-$(document).ready(function(){
-  $('select').formSelect();
-});

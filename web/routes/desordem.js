@@ -1,25 +1,9 @@
 var express = require('express');
+var config = require("../config/db.js");
 var router = express.Router({mergeParams : true});
-var session = require('express-session');
+db = config.database;
 
-router.use(session({
-	secret : "shss",
-	proxy: true,
-    resave: true,
-    saveUninitialized: true
-}));
-
-//CONEXÃO COM O BANCO
-var knex = require('knex')({
-  client: 'pg',
-  version: '10.3',
-  connection: {
-    host : 'localhost',
-    user : 'postgres',
-    password : 'postgres',
-    database : 'projetoMDS'
-  }
-});
+var knex = require('knex')(db);
 
 
 router.get("/desordem/new", function(req,res){

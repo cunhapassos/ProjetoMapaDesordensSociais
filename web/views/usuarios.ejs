@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Usuarios</title>
+	<link rel="stylesheet" href="../css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="../css/admin.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
+	<%- include sidenav.ejs %>
+	<main>
+		<form method="post" action="/usuarios/delete">
+			<table >
+
+			    <thead>
+			      <tr>
+			          <th>Login</th>
+			          <th>Email</th>
+			          <th>Nome</th>
+			          <th>Confiabilidade</th>
+			          <th></th>
+			      </tr>
+			    </thead>
+
+			    <tbody>
+				<% for(var i = 0; i < usuarios.length; i++) {%>
+			    
+			      <tr>
+			        <td><%= usuarios[i].usu_login %></td>
+			        <td><%= usuarios[i].usu_email %></td>
+			        <td><%= usuarios[i].usu_nome %></td>
+			    	<td><%= usuarios[i].usu_confiabilidade%></td>
+			    	<td><button name="id_usuario" type="submit" value=<%= usuarios[i].usu_idusuario %> class="btn-flat"><i class="clear small material-icons">clear</i></button><a name="id_usuario" href="/usuarios/<%= usuarios[i].usu_idusuario %>/edit" class="btn-flat"><i class="edit small material-icons">edit</i></a><a name="id_usuario" href="/usuarios/<%= usuarios[i].usu_idusuario %>/show" class="btn-flat"><i class="edit small material-icons">remove_red_eye</i></a></td>
+			      </tr>
+
+			    <% } %>
+			    </tbody>
+			</table>
+			
+		</form>
+		<a class="btn-floating btn-large waves-effect waves-light red add" href="/usuarios/new"><i class="material-icons">add</i></a>
+
+	</main>
+	<script src="../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../js/materialize.js"></script>
+    <script type="text/javascript" src="../js/init_dom.js"></script>
+</body>
+</html>

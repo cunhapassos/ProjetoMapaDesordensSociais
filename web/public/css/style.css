@@ -16,3 +16,17 @@ table{
 .clear{
 	color : #ff5e5e;
 }
+
+.show{
+	border: 2px solid;
+	box-shadow: 5px 10px #888888;
+	margin-top: 50px;
+	margin-left: 250px;
+	margin-right: 250px;
+}
+
+.add{
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+}

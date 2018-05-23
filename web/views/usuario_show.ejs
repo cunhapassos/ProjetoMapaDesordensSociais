@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin.css">
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+<body>
+	<%- include sidenav.ejs %>
+	<main>
+		<center class="show">
+			<h2><%= usuario.usu_nome %></h2>
+			<h5 id="show_cpf" class="cpf"><%= cpf %></h5>
+			<h5><%= usuario.usu_nascimento %></h5>
+			<h5><%= usuario.usu_login %></h5>
+			<h5><%= usuario.usu_data_cadastro %></h5>
+			<h5><%= usuario.usu_email %></h5>
+			<h5>Confiabilidade : <%= usuario.usu_confiabilidade %></h5>
+			<h5>Tipo : <%= usuario.usu_tipo %></h5>
+			<h5 class="phone">Telefone :<%= telefone %></h5>
+			<h5><%= usuario.data_cadastro %></h5>
+		</center>
+	</main>
+	<script src="../../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../js/materialize.js"></script>
+    <script type="text/javascript" src="../../js/init_dom.js"></script>
+</body>
+</html>
