@@ -37,7 +37,7 @@
       </div>
     
     </main>
-  
+   
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
@@ -67,7 +67,7 @@
       for(var i = 0; i < markes.length; i++){
 
         var marker = L.marker([markes[i].st_x, markes[i].st_y]).addTo(map);
-        marker.bindPopup(markes[i].den_status);
+        marker.bindPopup("<b>" + markes[i].den_status + "</b><hr><span>" + markes[i].den_descricao + "</span><br><br><a href=\"/denuncias/" + markes[i].den_iddenuncia + "/show\">Ver denúnica</a>");
       }
 
       // map.on('click', function(e) {

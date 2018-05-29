@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin.css">
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <%- include sidenav.ejs %>
+
+    <main>
+        <h3>Denúncia</h3>
+        
+        <table>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <tr>
+                <td><strong>Usuario: </strong><%= denuncia.usu_nome %></td>
+            </tr>
+            <tr>
+                <td><strong>Data e hora do registro:</strong> <%= denuncia.den_datahora_registro %></td>
+            </tr>
+            <tr>
+                <td><strong>Data e hora que ocorreu:</strong> <%= denuncia.den_datahora_ocorreu %></td>
+            </tr>
+            <tr>
+                <td><strong>Data e hora da solução: </strong><%= denuncia.den_datahora_solucao %></td>
+            </tr>
+            <tr>
+                <td><strong>Status: </strong><%= denuncia.den_status %></td>
+            </tr>
+            <tr>
+                <td><strong>Nível Confiabilidade: </strong><%= denuncia.den_nivel_confiabilidade %></td>
+            </tr>
+            <tr>
+                <td><strong>Descrição: </strong><%= denuncia.den_descricao %></td>
+            </tr>
+            <tr>
+                <td><strong>Anonimato: </strong><%= denuncia.den_anonimato %></td>
+            </tr>
+        </table>
+
+    </main>
+</body>
+</html>

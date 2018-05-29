@@ -1,3 +1,4 @@
+//CHAMANDO PACOTES
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express(); //"app" criado para se usar o express
@@ -9,11 +10,13 @@ var consign = require('consign');
 var methodOverride = require('method-override');
 var expressSanitizer = require("express-sanitizer");
 
+//ROTAS
 var desordemRouter = require("./routes/desordem.js");
 var orgaoRouter = require("./routes/orgaos.js");
 var usuarioRouter = require("./routes/usuarios.js");
+var denunciaRouter = require("./routes/denuncias.js");
 
-var sess;
+//CONFIGURAÇÕES GERAIS
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride("_method"));
@@ -22,6 +25,8 @@ app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.engine('html', require('ejs').renderFile);
 
+//DEFININDO SESSION
+var sess;
 app.use(session({
 	secret : "shss",
 	proxy: true,
@@ -74,7 +79,8 @@ app.get("/login", function(req,res){
 	}
 
 });
-	
+
+console.log(md5("abcd1234"));
 // console.log(aux);
 
 app.post("/login", function(req,res){
@@ -107,7 +113,7 @@ app.get("/admin", function(req,res){
 
 	if (sess.email) {
 		
-		knex.raw('select ST_X(den_local_desordem),ST_Y(den_local_desordem), den_status from denuncia').then(function(result){
+		knex.raw('select ST_X(den_local_desordem),ST_Y(den_local_desordem), den_status, den_descricao, den_iddenuncia from denuncia').then(function(result){
 
 			res.render('admin', {pontos : result.rows});
 		});
@@ -124,6 +130,7 @@ function FeatureCollection(){
     this.features = new Array();
 }
 
+app.use(denunciaRouter);
 app.use(orgaoRouter);
 app.use(desordemRouter);
 app.use(usuarioRouter);
