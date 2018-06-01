@@ -12,7 +12,7 @@
     <%- include sidenav.ejs %>
 
     <main>
-        <h3>Denúncia</h3>
+        <h3>Denúncia nº <%= denuncia.den_iddenuncia %></h3>
         
         <table>
             <tr>
@@ -40,6 +40,9 @@
             </tr>
             <tr>
                 <td><strong>Nível Confiabilidade: </strong><%= denuncia.den_nivel_confiabilidade %></td>
+            </tr>
+            <tr>
+                <td><strong>Desordem: </strong><%= denuncia.des_descricao %></td>
             </tr>
             <tr>
                 <td><strong>Descrição: </strong><%= denuncia.den_descricao %></td>

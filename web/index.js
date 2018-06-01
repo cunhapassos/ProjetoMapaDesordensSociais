@@ -102,6 +102,7 @@ app.post("/login", function(req,res){
 		}
 		else{
 			sess.email = email;
+			sess.usuario_id = usuario[0].usu_idusuario;
 			res.redirect("admin");
 		}
 	});
@@ -110,12 +111,17 @@ app.post("/login", function(req,res){
 app.get("/admin", function(req,res){
 	sess = req.session;
 
+	var desordens_result;
+
+	knex.select().from("desordem").then(function(result){
+		desordens_result = result;
+	});
 
 	if (sess.email) {
 		
 		knex.raw('select ST_X(den_local_desordem),ST_Y(den_local_desordem), den_status, den_descricao, den_iddenuncia from denuncia').then(function(result){
 
-			res.render('admin', {pontos : result.rows});
+			res.render('admin', {pontos : result.rows, desordens : desordens_result});
 		});
 
 	}
@@ -131,7 +137,7 @@ function FeatureCollection(){
 }
 
 app.use(denunciaRouter);
-app.use(orgaoRouter);
+app.use(orgaoRouter);	
 app.use(desordemRouter);
 app.use(usuarioRouter);
 

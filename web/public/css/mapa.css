@@ -1,0 +1,10 @@
+#map{
+    z-index:1;
+} /*essa vai ficar por baixo*/
+
+.add{
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 2;
+  }

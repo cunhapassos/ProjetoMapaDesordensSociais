@@ -2,6 +2,10 @@
 	margin-right: 2px !important;
 }
 
+.addDenuncia{
+  padding: 40px;
+}
+
 .sidenav{
 	padding-top: 56px;
 	/*width: 250px !important;*/
@@ -9,6 +13,10 @@
 
 header, main, footer {
   padding-left: 300px;
+}
+
+.titulomodal{
+  padding-left: 30%;
 }
 
 @media only screen and (max-width : 992px) {

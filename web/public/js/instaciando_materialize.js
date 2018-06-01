@@ -1,15 +1,18 @@
-  // SIDEBAR
+
 document.addEventListener('DOMContentLoaded', function() {
 
+  var elems = document.querySelectorAll('.modal');
+  var instances = M.Modal.init(elems);
+  
 
   $(document).ready(function(){
     $('.sidenav').sidenav();
   });
 
- document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.collapsible');
-    var instances = M.Collapsible.init(elems, options);
-  });
+
+  var elems2 = document.querySelectorAll('.collapsible');
+  var instances2 = M.Collapsible.init(elems2);
+  
 
   // Or with jQuery
 
@@ -17,3 +20,4 @@ document.addEventListener('DOMContentLoaded', function() {
     $('.collapsible').collapsible();
   });
 })
+
