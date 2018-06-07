@@ -10,7 +10,7 @@ router.get("/orgaos/new", function(req,res){
 
 	if(sess.email){
 
-		res.render("new_orgao");
+		res.render("orgao/create");
 
 	}else{
 		res.redirect("../login");
@@ -53,7 +53,7 @@ router.get("/orgaos/:id/edit", function(req,res){
 		var orgaos;
 
 		knex('org_orgao').where({org_idorgao : id}).select().then(function(found){
-			res.render("orgao_update", {orgao : found[0]})
+			res.render("orgao/update", {orgao : found[0]})
 		});
 	}else{
 		res.redirect("../../login");
@@ -67,7 +67,7 @@ router.get("/orgaos", function(req,res){
 	if(sess.email){
 
 		knex.select().from("org_orgao").then(function(orgaos){
-			res.render("orgaos", {orgaos : orgaos});
+			res.render("orgao/index", {orgaos : orgaos});
 		})
 	}else{
 		res.redirect("../../login");

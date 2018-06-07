@@ -10,22 +10,43 @@
   </head>
   <body>
     
-     <%- include sidenav.ejs %>
+  <%- include ../templates/sidenav.ejs %>
 
  <div class="row" id="fora_sidenav" style="margin-bottom: 0;">
-    <form class="col s12" method="post" action="/orgaos/<%= orgao.org_idorgao %>?_method=PUT">
+    <form class="col s12" method="post" action="/desordens/<%= desordem.des_iddesordem %>?_method=PUT">
       <div class="row">
         <div class="input-field col s6">
-          <input value=<%= orgao.org_nome %> name="nome" type="text" class="validate">
-          <label for="first_name">Nome</label>
+          <input value=<%= desordem.des_tipo %> name="tipo" type="text" class="validate">
+          <label for="first_name">Tipo</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <textarea  name="descricao" type="text"  class="materialize-textarea"><%= orgao.org_descricao %></textarea>
+          <input value=<%= desordem.des_natureza %> name="natureza" type="text" class="validate">
+          <label for="first_name">Natureza</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <textarea  name="descricao" type="text"  class="materialize-textarea"><%= desordem.des_tipo %></textarea>
           <label for="first_name">Descrição</label>
         </div>
       </div>
+      <div class="row">
+        <div class="input-field col s6">
+        <select name="orgao">
+          <option value="" disabled selected>Qual órgao</option>
+          <% if(orgaos){ 
+              for(var i = 0; i < orgaos.length; i++){%>
+                  <% if(orgaos[i].org_idorgao == desordem.org_idorgao){ %>
+                    <option value=<%= orgaos[i].org_idorgao %> selected ><%= orgaos[i].org_nome %></option>
+                  <% }else{ %>
+                  <option value=<%= orgaos[i].org_idorgao %> ><%= orgaos[i].org_nome %></option>
+              <% }}} %>
+        </select>
+        <label>Orgão</label>
+      </div>
+    </div>
 
       <div class="row">
         <button class="btn waves-effect waves-light" type="submit" name="action">Submit

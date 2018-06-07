@@ -14,7 +14,7 @@ router.get("/desordem/new", function(req,res){
 
 		knex.select().from('org_orgao').then(function(result){
 			//orgaos_result = result;
-			res.render("new_desordem", {orgaos : result });
+			res.render("desordem/create", {orgaos : result });
 		})		
 	}else{
 		res.redirect("../login");
@@ -81,7 +81,7 @@ router.get("/desordens/:id/edit", function(req,res){
 		})
 
 		knex('desordem').where({des_iddesordem : id}).select().then(function(found){
-			res.render("desordem_update", {desordem : found[0], orgaos : orgaos})
+			res.render("desordem/update", {desordem : found[0], orgaos : orgaos})
 		});
 	}else{
 		res.redirect("../../login");
@@ -94,7 +94,7 @@ router.get("/desordens", function(req,res){
 	if(sess.email){
 
 		knex.select().from("desordem").then(function(desordens){
-			res.render("desordens", {desordens : desordens});
+			res.render("desordem/index", {desordens : desordens});
 		})
 	}else{
 		res.redirect("../../login");
@@ -114,7 +114,7 @@ router.put("/desordens/:id",function(req,res){
 		res.redirect("../../admin");
 	}).catch(function(error){
 		console.log(error);
-		res.redirect("/desordensasdfsa/"+ req.params.id);
+		res.redirect("/desordens/"+ req.params.id);
 	})
 })
 

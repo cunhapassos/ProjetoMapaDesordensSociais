@@ -2,7 +2,7 @@
   "name": "sistematecnico",
   "version": "1.0.0",
   "description": "Sistema Web para tecnico e gestor",
-  "main": "index.js",
+  "main": "DB_PW=postgres index.js",
   "dependencies": {
     "body-parser": "^1.18.2",
     "bulma": "^0.7.1",

@@ -9,7 +9,7 @@ router.get("/usuarios/new", function(req,res){
 	
 	sess = req.session;
 	if(sess.email){
-		res.render("new_usuario");
+		res.render("usuario/create");
 	}else{
 		res.redirect("../login");
 	}
@@ -80,7 +80,7 @@ router.get("/usuarios/:id/edit", function(req,res){
 		var usuarios;
 
 		knex('usuario').where({usu_idusuario : id}).select().then(function(found){
-			res.render("usuario_update", {usuario : found[0]})
+			res.render("usuario/update", {usuario : found[0]})
 		});
 	}else{
 		res.redirect("../../login");
@@ -101,7 +101,7 @@ router.get("/usuarios/:id/show", function(req,res){
 			new_cpf = cpf.substr(0, 3) + "." + cpf.substr(3,3) + "." + cpf.substr(6,3) + "-" + cpf.substr(9,2);
 			telefone = "(" + telefone.substr(0,2) + ") " + telefone.substr(2,5) + "-" + telefone.substr(7,4);
 			
-			res.render("usuario_show", {usuario : found[0], cpf : new_cpf, telefone : telefone})
+			res.render("usuario/show", {usuario : found[0], cpf : new_cpf, telefone : telefone})
 		});
 	}else{
 		res.redirect("../../login");
@@ -114,7 +114,7 @@ router.get("/usuarios", function(req,res){
 	if(sess.email){
 
 		knex.select().from("usuario").then(function(usuarios){
-			res.render("usuarios", {usuarios : usuarios});
+			res.render("usuario/index", {usuarios : usuarios});
 		})
 	}else{
 		res.redirect("../../login");

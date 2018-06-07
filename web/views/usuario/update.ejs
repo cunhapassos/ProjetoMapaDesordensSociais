@@ -3,84 +3,83 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="../css/materialize.css">
-    <link rel="stylesheet" type="text/css" href="../css/admin.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin.css">
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
   </head>
   <body>
     
-     <%- include templates/sidenav.ejs %>
+    <%- include ../templates/sidenav.ejs %>
 
  <div class="row" id="fora_sidenav" style="margin-bottom: 0;">
-    <form class="col s12" method="post" action="/usuarios">
+    <form class="col s12" method="post" action="/orgaos/<%= usuario.usu_idusuario %>?_method=PUT">
+      
       <div class="row">
         <div class="input-field col s6">
-          <input placeholder="Nome" name="nome" type="text" class="validate">
+          <input value=<%= usuario.usu_nome%> name="nome" type="text" class="validate">
           <label for="first_name">Nome</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input placeholder="Email" name="email" type="email" class="validate">
+          <input value="<%= usuario.usu_email%>" name="email" type="email" class="validate">
           <label>Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input placeholder="Login" name="login" type="text" class="validate">
+          <input value=<%= usuario.usu_login%> name="login" type="text" class="validate">
           <label>Login</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input placeholder="Senha" name="senha" type="password" class="validate">
+          <input value=<%= usuario.usu_senha %> name="senha" type="password" class="validate">
           <label>Senha</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input placeholder="Confiabilidade" name="confia" type="number" class="validate">
+          <input value=<%= usuario.usu_confiabilidade %> name="confia" type="number" class="validate">
           <label>Confiabilidade</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input placeholder="Tipo" name="tipo" type="text" class="validate">
+          <input value=<%= usuario.usu_tipo%> name="tipo" type="text" class="validate">
           <label>Tipo</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input type="text" placeholder="dd/mm/aaaa" name="nascimento" class="date">
+          <input type="text" value=<%= usuario.usu_nascimento%> name="nascimento" class="date">
           <label>Data de nascimento</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input placeholder="000.000.000-00" name="cpf" type="text" class="cpf validate">
+          <input value=<%= usuario.usu_cpf%> name="cpf" type="text" class="cpf validate">
           <label>CPF</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input placeholder="(00) 00000-0000" name="telefone" type="text" class="phone validate">
+          <input value=<%= usuario.usu_telefone%> name="telefone" type="text" class="phone validate">
           <label>Telefone</label>
         </div>
       </div>
       <div class="row">
-        <button class="btn waves-effect waves-light" type="submit" name="action">Salvar
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
           <i class="material-icons right">send</i>
         </button>
       </div>
     </form>
   </div>
     
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="../js/materialize.js"></script>
-    <script type="text/javascript" src="../js/jquery.mask.js"></script>
-    <script type="text/javascript" src="../js/init_dom.js"></script>
+    <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../js/materialize.js"></script>
+    <script type="text/javascript" src="../../js/init_dom.js"></script>
     <script type="text/javascript">
       if (failed == 1) {
         alert("Erro ao inserir na base de dados");

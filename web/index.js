@@ -80,9 +80,6 @@ app.get("/login", function(req,res){
 
 });
 
-console.log(md5("abcd1234"));
-// console.log(aux);
-
 app.post("/login", function(req,res){
 	sess = req.session;
 
@@ -108,20 +105,27 @@ app.post("/login", function(req,res){
 	});
 });
 
+
 app.get("/admin", function(req,res){
 	sess = req.session;
-
+	
 	var desordens_result;
-
+	var polygons_result;
+	
 	knex.select().from("desordem").then(function(result){
 		desordens_result = result;
 	});
+	
+	knex.select('reg_regiao_alerta').from('regiao_alerta').then(function(result){
+		polygons_result = result;
+	})
+
 
 	if (sess.email) {
 		
 		knex.raw('select ST_X(den_local_desordem),ST_Y(den_local_desordem), den_status, den_descricao, den_iddenuncia from denuncia').then(function(result){
 
-			res.render('admin', {pontos : result.rows, desordens : desordens_result});
+			res.render('admin', {pontos : result.rows, desordens : desordens_result, polygons : polygons_result});
 		});
 
 	}
