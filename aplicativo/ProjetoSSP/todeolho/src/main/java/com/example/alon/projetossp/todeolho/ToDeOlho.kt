@@ -1,6 +1,7 @@
 package com.example.alon.projetossp.todeolho
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -177,11 +178,10 @@ class ToDeOlho : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
             R.id.nav_manage -> {
 
             }
-            R.id.nav_share -> {
-
-            }
-            R.id.nav_send -> {
-
+            R.id.nav_login -> {
+                // start login activity
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
             }
         }
 
