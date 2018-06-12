@@ -1,8 +1,12 @@
 package com.example.alon.projetossp.todeolho
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -10,8 +14,21 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_to_de_olho.*
 import kotlinx.android.synthetic.main.app_bar_to_de_olho.*
+import kotlinx.android.synthetic.main.content_to_de_olho.*
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.views.MapView
+import org.osmdroid.util.GeoPoint
+import org.osmdroid.api.IMapController
+import java.nio.file.Files.size
+
+
+
+
 
 class ToDeOlho : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    companion object {
+        val REQUEST_ID_MULTIPLE_PERMISSIONS = 3
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +46,83 @@ class ToDeOlho : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        //Check for internet permission
+        if (checkAndRequestPermissions()) {
+            setUpMap()
+        }
+    }
+
+    private fun checkAndRequestPermissions(): Boolean {
+
+        val listPermissionsNeeded = ArrayList<String>()
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET)
+                != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.INTERNET)
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+
+        if (!listPermissionsNeeded.isEmpty()) {
+            ActivityCompat.requestPermissions(this, listPermissionsNeeded.toTypedArray(), REQUEST_ID_MULTIPLE_PERMISSIONS)
+            return false
+        }
+        return true
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            REQUEST_ID_MULTIPLE_PERMISSIONS -> {
+                // If request is cancelled, the result arrays are empty.
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                    setUpMap()
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return
+            }
+
+        // Add other 'when' lines to check for other
+        // permissions this app might request.
+            else -> {
+                // Ignore all other requests.
+            }
+        }
+    }
+
+    fun setUpMap() {
+
+        /*
+       * Aqui definimos qual vai ser o mapa usado. No caso MAPNIK
+       * */
+        map.setTileSource(TileSourceFactory.MAPNIK)
+
+        /*
+        * Aqui sao colocados os botoes de zoom
+        * */
+        map.setBuiltInZoomControls(true)
+        map.setMultiTouchControls(true)
+
+        /*
+        * Aqui e definido o ponto central do mapa usando o controler
+        * */
+        val mapController = map.controller
+        mapController.setZoom(15.5)
+        val startPoint = GeoPoint(-15.7801,  -47.9292)
+        mapController.setCenter(startPoint)
+
+        map.invalidate()
     }
 
     override fun onBackPressed() {
@@ -58,14 +152,8 @@ class ToDeOlho : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_camera -> {
+            R.id.nav_profile -> {
                 // Handle the camera action
-            }
-            R.id.nav_gallery -> {
-
-            }
-            R.id.nav_slideshow -> {
-
             }
             R.id.nav_manage -> {
 
@@ -80,5 +168,15 @@ class ToDeOlho : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        map.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        map.onPause()
     }
 }
