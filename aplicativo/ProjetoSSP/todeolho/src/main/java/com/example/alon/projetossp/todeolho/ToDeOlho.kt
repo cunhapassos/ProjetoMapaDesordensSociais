@@ -19,7 +19,13 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.views.MapView
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.api.IMapController
+import org.osmdroid.views.overlay.ItemizedIconOverlay
+import org.osmdroid.views.overlay.ItemizedOverlayWithFocus
+import org.osmdroid.views.overlay.OverlayItem
 import java.nio.file.Files.size
+import org.osmdroid.views.overlay.Marker
+
+
 
 
 
@@ -35,11 +41,20 @@ class ToDeOlho : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
         setContentView(R.layout.activity_to_de_olho)
         setSupportActionBar(toolbar)
 
+
+        //define acao do botao + da tela inicial
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            //cria marcador define a posicao, a forma de colocar e adiciona ao mapa.
+            val startMarker = Marker(map)
+            startMarker.position = map.mapCenter as GeoPoint?
+            startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+            map.overlays.add(startMarker)
+
+            //atualiza o mapa
+            map.invalidate()
         }
 
+        //define acao de acionar o menu
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
@@ -53,6 +68,10 @@ class ToDeOlho : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
         }
     }
 
+
+    /**
+     * Verifica e solicita permissoes necessarias para abri o mapa
+     * */
     private fun checkAndRequestPermissions(): Boolean {
 
         val listPermissionsNeeded = ArrayList<String>()
@@ -87,8 +106,8 @@ class ToDeOlho : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
                     // contacts-related task you need to do.
                     setUpMap()
                 } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
+                    Snackbar.make(findViewById(R.id.nav_view), "Impossivel abrir mapa sem permissão", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show()
                 }
                 return
             }
