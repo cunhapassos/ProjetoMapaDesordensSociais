@@ -26,15 +26,15 @@ router.post("/denuncias", function(req, res){
 
     datahoraocorreu = dataocorreu + " " + req.body.horaocorreu;
    
-    var datasolucao = req.body.datasolucao;
-    datasolucao = datasolucao.replace(/\//g, "-");
+    //var datasolucao = req.body.datasolucao;
+    //datasolucao = datasolucao.replace(/\//g, "-");
 
-    datahorasolucao = datasolucao + " " + req.body.horasolucao;
+    //datahorasolucao = datasolucao + " " + req.body.horasolucao;
 
     var desordem = req.body.desordem;
     desordem = parseInt(desordem);
-	var status = req.body.status;
-	var confiabilidade = req.body.confiabilidade;
+	var status = "Pendente";
+	var confiabilidade = 1;
 	var descricao = req.body.descricao;
     var anonimato = req.body.anonimato;
     
@@ -45,7 +45,6 @@ router.post("/denuncias", function(req, res){
         den_idusuario : sess.usuario_id,
         den_datahora_registro : datahoraregistro,
         den_datahora_ocorreu : datahoraocorreu,
-        den_datahora_solucao : datahorasolucao,
         den_status : status,
         den_nivel_confiabilidade : confiabilidade,
         den_local_desordem : "POINT(" + req.body.latitude + " " + req.body.longitude +")",

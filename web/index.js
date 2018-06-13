@@ -42,7 +42,7 @@ var knex = require('knex')({
     host : 'localhost',
     user : 'postgres',
     password : 'postgres',
-    database : 'projetoMDS'
+    database : 'ProjetoMDS'
   }
 });
 
@@ -57,7 +57,7 @@ const st = knexPostgis(knex);
 
 app.get("/", function(req,res){
 	sess = req.session;
-
+	
 	if(sess.email){
 		redirect("admin");
 	}
@@ -85,7 +85,7 @@ app.post("/login", function(req,res){
 
 	var senha = req.body.password;
 	var email = req.body.email;
-
+	console.log(email);
 	senha = md5(senha);
 
 	var name = 0;
