@@ -91,11 +91,18 @@ router.get("/desordens/:id/edit", function(req,res){
 
 router.get("/desordens", function(req,res){
 	sess =req.session;
+	var tipos;
+	var orgaos;
+	
 	if(sess.email){
 
-		knex.select().from("desordem").then(function(desordens){
-			res.render("desordem/index", {desordens : desordens});
+		knex.select().from("tipo_desordem").then(function(found){
+			tipos = found;
+			knex.select().from("desordem").then(function(desordens){
+				res.render("desordem/index", {desordens : desordens, tipos : tipos});
+			})
 		})
+
 	}else{
 		res.redirect("../../login");
 	}

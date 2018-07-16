@@ -74,6 +74,20 @@ router.get("/orgaos", function(req,res){
 	}
 })
 
+router.get("/orgaos/:id/show", function(req,res){
+	sess =req.session;
+	var id = req.params.id;
+	
+	if(sess.email){
+
+		knex('org_orgao').where({org_idorgao : id}).select().then(function(found){
+			res.render("orgao/show", {orgao : found[0]})
+		});
+	}else{
+		res.redirect("../../login");
+	}
+})
+
 router.put("/orgaos/:id",function(req,res){
 
 	knex('org_orgao')

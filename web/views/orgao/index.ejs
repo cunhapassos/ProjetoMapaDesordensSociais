@@ -10,6 +10,9 @@
 <body>
 	<%- include ../templates/sidenav.ejs %>
 	<main>
+		
+		<h3>Órgãos</h3>
+		<hr>
 		<form method="post" action="/orgaos/delete">
 			<table >
 
@@ -27,7 +30,7 @@
 			      <tr>
 			        <td><%= orgaos[i].org_nome %></td>
 			        <td><%= orgaos[i].org_descricao %></td>
-			    	<td><button name="id_orgao" type="submit" value=<%= orgaos[i].org_idorgao %> class="btn-flat"><i class="clear small material-icons">clear</i></button><a name="id_desordem" href="/orgaos/<%= orgaos[i].org_idorgao %>/edit" class="btn-flat"><i class="edit small material-icons">edit</i></a></td>
+			    	<td><button name="id_orgao" type="submit" value=<%= orgaos[i].org_idorgao %> class="btn-flat"><i class="clear small material-icons">clear</i></button><a name="id_desordem" href="/orgaos/<%= orgaos[i].org_idorgao %>/edit" class="btn-flat"><i class="edit small material-icons">edit</i></a><a name="id_usuario" href="/orgaos/<%= orgaos[i].org_idorgao %>/show" class="btn-flat"><i class="edit small material-icons">remove_red_eye</i></a></td>
 			      </tr>
 
 			    <% } %>

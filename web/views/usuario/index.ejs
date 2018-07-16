@@ -9,12 +9,17 @@
 </head>
 <body>
 	<%- include ../templates/sidenav.ejs %>
+
 	<main>
+
+		<h3>Usuários Cadastrados</h3>
+		<hr>
 		<form method="post" action="/usuarios/delete">
 			<table >
 
 			    <thead>
 			      <tr>
+				  	  <!-- <th>Picture</th> -->
 			          <th>Login</th>
 			          <th>Email</th>
 			          <th>Nome</th>
@@ -24,14 +29,25 @@
 			    </thead>
 
 			    <tbody>
-				<% for(var i = 0; i < usuarios.length; i++) {%>
+				<% for(var i = 0; i < usuarios.length; i++){ %>
+			
 			    
-			      <tr>
+			      <tr>	
 			        <td><%= usuarios[i].usu_login %></td>
 			        <td><%= usuarios[i].usu_email %></td>
 			        <td><%= usuarios[i].usu_nome %></td>
-			    	<td><%= usuarios[i].usu_confiabilidade%></td>
-			    	<td><button name="id_usuario" type="submit" value=<%= usuarios[i].usu_idusuario %> class="btn-flat"><i class="clear small material-icons">clear</i></button><a name="id_usuario" href="/usuarios/<%= usuarios[i].usu_idusuario %>/edit" class="btn-flat"><i class="edit small material-icons">edit</i></a><a name="id_usuario" href="/usuarios/<%= usuarios[i].usu_idusuario %>/show" class="btn-flat"><i class="edit small material-icons">remove_red_eye</i></a></td>
+			    	<td><%= usuarios[i].usu_confiabilidade %></td>
+			    	<td>
+			    		<button name="id_usuario" type="submit" value=<%= usuarios[i].usu_idusuario %> class="btn-flat">
+			    			<i class="clear small material-icons">clear</i>
+			    		</button>
+			    		<a name="id_usuario" href="/usuarios/<%= usuarios[i].usu_idusuario %>/edit" class="btn-flat">
+			    			<i class="edit small material-icons">edit</i>
+			    		</a>
+			    		<a name="id_usuario" href="/usuarios/<%= usuarios[i].usu_idusuario %>/show" class="btn-flat">
+			    			<i class="edit small material-icons">remove_red_eye</i>
+			    		</a>
+			    	</td>
 			      </tr>
 
 			    <% } %>

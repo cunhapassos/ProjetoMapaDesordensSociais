@@ -17,6 +17,18 @@ table{
 	color : #ff5e5e;
 }
 
+.titulo_create{
+	padding-bottom: 30px;
+}
+
+nav{
+	background-color: rgba(0, 153, 255, 0.911);
+}
+
+td{
+	box-align: center;
+}
+
 .show{
 	border: 2px solid;
 	box-shadow: 5px 10px #888888;

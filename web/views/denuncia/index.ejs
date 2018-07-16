@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../../css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin.css">
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <title>Denúncias</title>
+</head>
+<body>
+
+    <%- include ../templates/sidenav.ejs %>
+
+    <main>
+        <%- include ../templates/navbar.ejs %>
+        <h3>Denúncias</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Desordem</th>
+                    <th>Status</th>
+                    <th>Nível de Confiabilidade</th>
+                    <th>Descrição</th>
+                    <th>Anonimato</th>
+                    <hr>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i = 0; i < denuncias.length; i++){ %>
+                    <tr>
+                        <td><%= denuncias[i].den_iddenuncia %></td>
+                        <td><%= denuncias[i].den_iddesordem %></td>
+                        <td><%= denuncias[i].den_status %></td>
+                        <td><%= denuncias[i].den_nivel_confiabilidade %></td>
+                        <td><%= denuncias[i].den_descricao %></td>
+                        <td><%= denuncias[i].den_anonimato %></td>
+                    </td>
+                <% } %> 
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

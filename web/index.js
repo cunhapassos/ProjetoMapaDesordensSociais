@@ -14,6 +14,7 @@ var expressSanitizer = require("express-sanitizer");
 var desordemRouter = require("./routes/desordem.js");
 var orgaoRouter = require("./routes/orgaos.js");
 var usuarioRouter = require("./routes/usuarios.js");
+var tipoRouter = require("./routes/tipos.js");
 var denunciaRouter = require("./routes/denuncias.js");
 
 //CONFIGURAÇÕES GERAIS
@@ -144,6 +145,7 @@ app.use(denunciaRouter);
 app.use(orgaoRouter);	
 app.use(desordemRouter);
 app.use(usuarioRouter);
+app.use(tipoRouter);
 
 app.listen('3000', () => { //abrindo a aplicação na porta 3000
 	console.log("Server started");

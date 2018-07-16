@@ -15,6 +15,18 @@ router.get("/denuncias/:id/show", function(req, res){
     
 })
 
+router.get("/denuncias", function(req, res){
+    sess = req.session;
+
+    if(sess.email){
+        knex.select().from("denuncia").then(function(result){
+            res.render("denuncia/index", {denuncias : result});            
+        })
+    }else{
+        res.redirect("login");
+    }
+})
+
 
 router.post("/denuncias", function(req, res){
     sess =req.session;

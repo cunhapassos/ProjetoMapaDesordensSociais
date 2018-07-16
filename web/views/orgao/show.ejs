@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin.css">
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <%- include ../templates/sidenav.ejs %>
+
+    <main>
+        <h3>Órgão nº <%= orgao.org_idorgao %></h3>
+        
+        <table>
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <tr>
+                <td><strong>Nome: </strong><%= orgao.org_nome %></td>
+            </tr>
+            <tr>
+                <td><strong>Descrição:</strong> <%= orgao.org_descricao %></td>
+            </tr>
+        </table>
+
+    </main>
+</body>
+</html>

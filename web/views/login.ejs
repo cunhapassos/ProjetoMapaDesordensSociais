@@ -56,13 +56,14 @@
   </main>
 
   <script type="text/javascript" src="js/materialize.js"></script>
-  <% if (failed == 1){ %>
+  <% if (typeof failed !== 'undefined'){ 
+    if(failed == 1){ %>
 
     <script type="text/javascript">
       alert("email ou senha incorretos");
     </script>
   
-  <% } %>
+  <% }} %>
   <script async type="text/javascript" src="../js/bulma.js"></script>
 </body>
 </html>

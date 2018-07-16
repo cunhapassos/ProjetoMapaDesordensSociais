@@ -16,6 +16,24 @@ router.get("/usuarios/new", function(req,res){
 
 });
 
+router.get("/usuarios", function(req,res){
+	sess =req.session;
+
+	if(sess.email){
+		var fotos;
+
+		knex.select().from("foto_usuario").then(function(result){
+			fotos = result;
+		})
+
+		knex.select().from("usuario").then(function(usuarios){
+			res.render("usuario/index", {usuarios : usuarios, fotos : fotos});
+		})
+	}else{
+		res.redirect("../../login");
+	}
+})
+
 router.post("/usuarios",function(req,res){
 	
 	var login = req.body.login;
@@ -108,18 +126,6 @@ router.get("/usuarios/:id/show", function(req,res){
 	}
 })
 
-router.get("/usuarios", function(req,res){
-	sess =req.session;
-
-	if(sess.email){
-
-		knex.select().from("usuario").then(function(usuarios){
-			res.render("usuario/index", {usuarios : usuarios});
-		})
-	}else{
-		res.redirect("../../login");
-	}
-})
 
 router.put("/usuarios/:id",function(req,res){
 

@@ -8,28 +8,35 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-<%- include ../templates/sidenav.ejs %>	<main>
+	<%- include ../templates/sidenav.ejs %>	
+	
+		<%- include ../templates/navbar.ejs %>
+	<main>
+		<h3>Desordens</h3>
+
 		<form method="post" action="/desordem/delete">
-			<table >
+			<table class="centered striped">
 
 			    <thead>
 			      <tr>
-			          <th>Tipo</th>
-			          <th>Natureza</th>
-			          <th>Descrição</th>
-			          <th>orgao</th>
-			          <th></th>
+			          <th>Id</th>
+					  <th>Tipo</th>
+			          <th>Excluir Editar</th>
 			      </tr>
 			    </thead>
 
 			    <tbody>
-				<% for(var i = 0; i < desordens.length; i++) {%>
+				<% for(var i = 0; i < desordens.length; i++) { %>
 			    
 			      <tr>
-			        <td><%= desordens[i].des_tipo %></td>
-			        <td><%= desordens[i].des_natureza %></td>
-			        <td><%= desordens[i].des_descricao %></td>
-			    	<td><%= desordens[i].org_idorgao%></td>
+			    	<td><%= desordens[i].des_iddesordem %></td>
+
+				  	<% for(var j = 0; j < tipos.length; j++) { %>
+						<% if(tipos[j].tde_idtipo_desordem == desordens[i].des_tipo){ %>
+							<td><%= tipos[j].tde_nome  %></td>
+					<% }} %>
+
+
 			    	<td><button name="id_desordem" type="submit" value=<%= desordens[i].des_iddesordem %> class="btn-flat"><i class="clear small material-icons">clear</i></button><a name="id_desordem" href="/desordens/<%= desordens[i].des_iddesordem %>/edit" class="btn-flat"><i class="edit small material-icons">edit</i></a></td>
 			      </tr>
 
