@@ -42,3 +42,26 @@ td{
   bottom: 50px;
   right: 50px;
 }
+
+.img_usuario{
+	border-radius: 50%;
+}
+
+.pusher{
+	padding-top: 2.5%;
+	margin-right: 25%;
+	margin-left: 5%;
+}
+
+.sidebar{
+	padding-top: 2%;
+	padding-left: 1%;
+}
+
+/* .links{
+    -webkit-appearance: none;
+    color: rgb(0, 0, 0) !important;
+} */
+/* .botao_adicionar{
+	position: absolute;
+} */

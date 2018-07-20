@@ -1,36 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Apagar Desordem</title>
-	<link rel="stylesheet" href="../css/materialize.css">
-    <link rel="stylesheet" type="text/css" href="../css/admin.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-</head>
-<body>
+
 	<%- include ../templates/sidenav.ejs %>
-	<main>
+
+	<div class="ui pusher">
 		
-		<h3>Órgãos</h3>
+		<h1 class="ui dividing header">Órgãos</h1>
 		<hr>
 		<form method="post" action="/orgaos/delete">
-			<table >
+			<table class="ui celled table uitable">
 
 			    <thead>
-			      <tr>
+			      <tr class="center aligned">
 			          <th>Nome</th>
 			          <th>Descrição</th>
-			          <th></th>
+			          <th>Deletar</th>
+					  <th>Editar</th>
+					  <th>Ver</th>
 			      </tr>
 			    </thead>
 
 			    <tbody>
 				<% for(var i = 0; i < orgaos.length; i++) {%>
 			    
-			      <tr>
+			      <tr class="center aligned">
 			        <td><%= orgaos[i].org_nome %></td>
 			        <td><%= orgaos[i].org_descricao %></td>
-			    	<td><button name="id_orgao" type="submit" value=<%= orgaos[i].org_idorgao %> class="btn-flat"><i class="clear small material-icons">clear</i></button><a name="id_desordem" href="/orgaos/<%= orgaos[i].org_idorgao %>/edit" class="btn-flat"><i class="edit small material-icons">edit</i></a><a name="id_usuario" href="/orgaos/<%= orgaos[i].org_idorgao %>/show" class="btn-flat"><i class="edit small material-icons">remove_red_eye</i></a></td>
+			    	<td><button name="id_orgao" type="submit" value=<%= orgaos[i].org_idorgao %> class="ui red button">Excluir</button></td>
+					
+					<td><a name="id_desordem" href="/orgaos/<%= orgaos[i].org_idorgao %>/edit" class="ui gray button">Editar</a></td>
+						
+					<td><a name="id_usuario" href="/orgaos/<%= orgaos[i].org_idorgao %>/show" class="ui gray button">Ver</a></td>
 			      </tr>
 
 			    <% } %>
@@ -38,9 +36,6 @@
 			</table>
 			
 		</form>
-	</main>
-	<script src="../js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="../js/materialize.js"></script>
-    <script type="text/javascript" src="../js/init_dom.js"></script>
-</body>
-</html>
+	</div>
+	
+	<%- include ../templates/bottom.ejs %>

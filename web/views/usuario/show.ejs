@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="../../css/materialize.css">
-    <link rel="stylesheet" type="text/css" href="../../css/admin.css">
-    <link rel="stylesheet" type="text/css" href="../../css/style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-<body>
-    <%- include ../templates/sidenav.ejs %>
 
-    <main>
-        <h3>Usuário nº <%= usuario.usu_idusuario %></h3>
-        
-        <table>
+    <%- include ../templates/sidenav.ejs %>
+    <% var found = 0; %>
+    <div class="ui pusher">
+
+        <h1 class="ui dividing header">Usuário nº <%= usuario.usu_idusuario %></h1>
+        <table class="ui celled table uitable">
             <tr>
                 <th></th>
                 <th></th>
@@ -51,7 +41,6 @@
                 <td><strong>Data de Cadastro: </strong><%= usuario.usu_data_cadastro %></td>
             </tr>
         </table>
-
+        </div>
     </main>
-</body>
-</html>
+<%- include ../templates/bottom.ejs %>

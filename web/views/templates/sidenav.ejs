@@ -1,34 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../../css/semantic.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    
+    <title>Sistema</title>
+</head>
+<body>
 
-  <ul id="slide-out" class="sidenav sidenav-fixed container" style="display: block;">
-    <!-- <li><a href="#!">Denuncias</a></li> -->
-    <li><a href="/usuarios">Usuários</a></li>
-    <li><a href="/admin">Mapa</a></li>
-    <li><a href="/desordens">Desordens</a></li>
-    <li><a href="/orgaos">Órgãos</a></li>
-    <li><a href="/denuncias">Denúnicas</a></li>
-    <li><a href="/tipos">Tipos de Desordem</a></li>
-    <!-- <li class="no-padding">
-      <ul class="collapsible collapsible-accordion">
-        <li>
-          <a class="collapsible-header"><i class="material-icons">arrow_drop_down</i>Desordens</a>
-          <div class="collapsible-body">
-            <ul>
-              <li><a href="/desordem/new">Criar desordem</a></li>
-              <li><a href="/desordens">Listar Desordens</a></li>
-            </ul>
-          </div>
-        </li>
-      </ul>
-      <ul class="collapsible collapsible-accordion">
-        <li>
-          <a class="collapsible-header"><i class="material-icons">arrow_drop_down</i>Orgaos</a>
-          <div class="collapsible-body">
-            <ul>
-              <li><a href="/orgaos/new">Cadastrar Órgão</a></li>
-              <li><a href="/orgaos">Listar Órgãos</a></li>
-            </ul>
-          </div>
-        </li>
-      </ul>
-    </li> -->
-  </ul>
+  <div class="ui visible left sidebar inverted vertical menu">
+    
+    <div class="item">
+      <div class="header"><h4>Sistema Gerenciador Desordem</h4></div>
+      <div class="menu">
+        <a class="item"><%= sess.login %></a>
+        <a class="item" href="/logout" >Sair</a>
+      </div>
+    </div>
+
+    <a href="/usuarios" class="item">
+      Usuários
+    </a>
+    <a href="/admin" class="item">
+      Mapa
+    </a>
+    <a href="/desordens" class="item">
+      Desordens
+    </a>
+    <a href="/orgaos" class="item">
+      Órgãos
+    </a>
+    <a href="/denuncias" class="item">
+      Denúnicas
+    </a>
+    <a href="/tipos" class="item">
+      Tipos de desordem
+    </a>
+  </div>
+
+
+

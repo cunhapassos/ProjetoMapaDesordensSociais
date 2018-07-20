@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="css/materialize.css">
-    <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/admin.css">-->
     <link rel="stylesheet" type="text/css" href="css/mapa.css">
+    <link rel="stylesheet" type="text/css" href="css/semantic.min.css">
     <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
@@ -31,7 +32,6 @@
 
     <main>
       
-      <%- include templates/navbar.ejs %>
       
       <a class="btn-floating btn-large waves-effect waves-light modal-trigger red add" onclick="addMark();"><i class="material-icons" onclick="">add</i></a>
       
@@ -42,78 +42,50 @@
         <div class="modal-content">
 
           
-          <h4 class=" titulomodal col s12">Registrar denúncia</h4>
           <!-- <hr> -->
           
-          <form class="col s12 addDenuncia" method="post" action="/denuncias">
+          <form class="ui form" method="post" action="/denuncias">
       
-              <div class="row"> 
-                  <div class="input-field ">      
-                    <input type="text" placeholder="dd/mm/aaaa" name="dataocorreu" class="date">
+              <h1 class="ui dividing header">Registrar Denúncia</h1>
+              <div class="field"> 
+                        
                     <label>Data ocorreu</label>
-                  </div>       
+                    <input type="text" placeholder="dd/mm/aaaa" name="dataocorreu" class="date">
+                      
               </div>
 
-              <div class="row">
-                  <div class="input-field ">
-                  <input type="text" placeholder="hh:mm:ss" name="horaocorreu" class="time">
+              <div class="field">
+                  
                   <label>Hora que ocorreu</label>
-                  </div>
+                  <input type="text" placeholder="hh:mm:ss" name="horaocorreu" class="time">
+                  
               </div>
       
-              <!--div class="row">
-                  <div class="input-field ">
-                    <input type="text" placeholder="dd/mm/aaaa" name="datasolucao" class="date">
-                    <label>Data da solução</label>
-                  </div>
-              </div-->
-
-              <!--div class="row">
-                  <div class="input-field ">
-                  <input type="text" placeholder="hh:mm:ss" name="horasolucao" class="time">
-                  <label>Hora da solução</label>
-                  </div>
-              </div-->
-               
-              <!--div class="row">
-                <div class="input-field ">
-                  <input placeholder="Status" name="status" type="text" class="validate">
-                  <label>Status</label>
-                </div>
-              </div-->
-      
-              <!--div class="row">
-                <div class="input-field ">
-                  <input placeholder="Confiabilidade" name="confiabilidade" type="number" class="validate">
-                  <label>Confiabilidade</label>
-                </div>
-              </div-->
-      
-              <div class="row">  
-                <div class="input-field ">
+              <div class="field">  
+                
+                <label>Desordem</label>
                 <select name="desordem">
                     <option value="" disabled selected>Selecione a Desordem</option>
                     <% if(desordens){ 
                         for(var i = 0; i < desordens.length; i++){%>
                             <option value=<%= desordens[i].des_iddesordem %> ><%= desordens[i].des_descricao %></option>
                         <% }} %>
-                    </select>
-                  <label>Desordem</label>
-                </div>
+                </select>
+               
               </div>
 
-               <div class="row">
-                  <div class="input-field ">
-                    <textarea  name="descricao" type="text"  class="materialize-textarea"></textarea>
+               <div class="field">
+                  
                     <label >Descrição</label>
-                  </div>
+                    <textarea  name="descricao" type="text"  class="materialize-textarea"></textarea>
+                  
               </div>
       
-               <div class="row">
-                  <div class="input-field ">
-                    <input placeholder="anonimato" name="anonimato" type="number" class="validate">
+               <div class="field">
+                  
                     <label>Anonimato</label>
-                  </div>
+                    <input placeholder="anonimato" name="anonimato" type="number" class="validate">
+                  
               </div>
 
               <div style="display: none;">
@@ -124,8 +96,7 @@
             </div>
             <div class="modal-footer">
                 
-                <button class="btn waves-effect waves-light" type="submit" name="action">Salvar
-                  <i class="material-icons right">send</i>
+                <button class="ui primary botton" type="submit" name="action">Salvar
                 </button>
 
             </div>

@@ -1,89 +1,70 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="../../css/materialize.css">
-    <link rel="stylesheet" type="text/css" href="../../css/admin.css">
-    <link rel="stylesheet" type="text/css" href="../../css/style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  </head>
-  <body>
+
     
     <%- include ../templates/sidenav.ejs %>
 
- <div class="row" id="fora_sidenav" style="margin-bottom: 0;">
-    <form class="col s12" method="post" action="/orgaos/<%= usuario.usu_idusuario %>?_method=PUT">
+ <div class="ui pusher">
+    <h1 class="ui dividing header">Editar usuário</h1>
+    <form class="ui form" method="post" action="/orgaos/<%= usuario.usu_idusuario %>?_method=PUT">
       
-      <div class="row">
-        <div class="input-field col s6">
-          <input value=<%= usuario.usu_nome%> name="nome" type="text" class="validate">
+      <div class="field">
+        
           <label for="first_name">Nome</label>
-        </div>
+          <input value=<%= usuario.usu_nome%> name="nome" type="text" class="validate">
+        
       </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input value="<%= usuario.usu_email%>" name="email" type="email" class="validate">
+      <div class="field">
+        
           <label>Email</label>
-        </div>
+          <input value="<%= usuario.usu_email%>" name="email" type="email" class="validate">
+        
       </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input value=<%= usuario.usu_login%> name="login" type="text" class="validate">
+      <div class="field">
+        
           <label>Login</label>
-        </div>
+          <input value=<%= usuario.usu_login%> name="login" type="text" class="validate">
+        
       </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input value=<%= usuario.usu_senha %> name="senha" type="password" class="validate">
+      <div class="field">
+        
           <label>Senha</label>
-        </div>
+          <input value=<%= usuario.usu_senha %> name="senha" type="text" class="validate">
+        
       </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input value=<%= usuario.usu_confiabilidade %> name="confia" type="number" class="validate">
+      <div class="field">
+        
           <label>Confiabilidade</label>
-        </div>
+          <input value=<%= usuario.usu_confiabilidade %> name="confia" type="number" class="validate">
+        
       </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input value=<%= usuario.usu_tipo%> name="tipo" type="text" class="validate">
+      <div class="field">
+        
           <label>Tipo</label>
-        </div>
+          <input value=<%= usuario.usu_tipo%> name="tipo" type="text" class="validate">
+        
       </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input type="text" value=<%= usuario.usu_nascimento%> name="nascimento" class="date">
+      <div class="field">
+        
           <label>Data de nascimento</label>
-        </div>
+          <input type="text" value=<%= usuario.usu_nascimento%> name="nascimento" class="date">
+        
       </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input value=<%= usuario.usu_cpf%> name="cpf" type="text" class="cpf validate">
+      <div class="field">
+        
           <label>CPF</label>
-        </div>
+          <input value=<%= usuario.usu_cpf%> name="cpf" type="text" class="cpf validate">
+        
       </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input value=<%= usuario.usu_telefone%> name="telefone" type="text" class="phone validate">
+      <div class="field">
+        
           <label>Telefone</label>
-        </div>
+          <input value=<%= usuario.usu_telefone%> name="telefone" type="text" class="phone validate">
+        
       </div>
-      <div class="row">
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-          <i class="material-icons right">send</i>
+      <div class="field">
+        <button class="ui button primary" type="submit" name="action">Submit
         </button>
       </div>
     </form>
   </div>
     
-    <script src="../../js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="../../js/materialize.js"></script>
-    <script type="text/javascript" src="../../js/init_dom.js"></script>
-    <script type="text/javascript">
-      if (failed == 1) {
-        alert("Erro ao inserir na base de dados");
-      }
-    </script>
-  </body>
-</html>
+    <%- include ../templates/bottom.ejs %>

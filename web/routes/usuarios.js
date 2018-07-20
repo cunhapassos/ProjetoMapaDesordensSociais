@@ -24,11 +24,11 @@ router.get("/usuarios", function(req,res){
 
 		knex.select().from("foto_usuario").then(function(result){
 			fotos = result;
+			knex.select().from("usuario").then(function(usuarios){
+				res.render("usuario/index", {usuarios : usuarios, fotos : fotos});
+			})
 		})
 
-		knex.select().from("usuario").then(function(usuarios){
-			res.render("usuario/index", {usuarios : usuarios, fotos : fotos});
-		})
 	}else{
 		res.redirect("../../login");
 	}
@@ -111,6 +111,7 @@ router.get("/usuarios/:id/show", function(req,res){
 	if(sess.email){
 		var id = req.params.id;
 		var usuarios;
+		var fotos;
 
 		knex('usuario').where({usu_idusuario : id}).select().then(function(found){
 			var cpf = found[0].usu_cpf;
@@ -118,8 +119,12 @@ router.get("/usuarios/:id/show", function(req,res){
 			var new_cpf;
 			new_cpf = cpf.substr(0, 3) + "." + cpf.substr(3,3) + "." + cpf.substr(6,3) + "-" + cpf.substr(9,2);
 			telefone = "(" + telefone.substr(0,2) + ") " + telefone.substr(2,5) + "-" + telefone.substr(7,4);
+
+			knex.select().from('foto_usuario').then(function(resp){
+				fotos = resp;
+				res.render("usuario/show", {usuario : found[0], cpf : new_cpf, telefone : telefone, fotos : fotos})
+			})
 			
-			res.render("usuario/show", {usuario : found[0], cpf : new_cpf, telefone : telefone})
 		});
 	}else{
 		res.redirect("../../login");

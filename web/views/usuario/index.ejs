@@ -1,30 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Usuarios</title>
-	<link rel="stylesheet" href="../css/materialize.css">
-    <link rel="stylesheet" type="text/css" href="../css/admin.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-</head>
-<body>
+
 	<%- include ../templates/sidenav.ejs %>
+	
+	<div class="ui pusher">	
 
-	<main>
-
-		<h3>Usuários Cadastrados</h3>
+		<h1 class="ui dividing header">Usuários Cadastrados</h1>
 		<hr>
 		<form method="post" action="/usuarios/delete">
-			<table >
+			<table class="ui celled selectable table uitable">
 
 			    <thead>
-			      <tr>
-				  	  <!-- <th>Picture</th> -->
+			      <tr class="center aligned">
+				  	  <th>Picture</th>
 			          <th>Login</th>
 			          <th>Email</th>
 			          <th>Nome</th>
 			          <th>Confiabilidade</th>
-			          <th></th>
+			          <th>Deletar</th>
+					  <th>Editar</th>
+					  <th>Ver</th>
 			      </tr>
 			    </thead>
 
@@ -32,20 +25,36 @@
 				<% for(var i = 0; i < usuarios.length; i++){ %>
 			
 			    
-			      <tr>	
+			      <tr class="center aligned">	
+					<% for(var j = 0; j < fotos.length; j++){ %>
+						<% if(fotos[j].fot_idusuario != usuarios[i].usu_idusuario){ %>
+							<td>
+							<div class="ui small circular">
+							<img class="img_usuario responsive-img" src="../images/usuarios/no-image.png" width="50" />
+							</div>
+							</td>
+						<% } %>
+						<% if(fotos[j].fot_idusuario == usuarios[i].usu_idusuario){ %>
+							<td><img class="img_usuario responsive-img" src="../images/usuarios/<%= fotos[0].fot_idusuario %>.jpg" width="50" /></td>
+							<% } %>
+					<% } %>
 			        <td><%= usuarios[i].usu_login %></td>
 			        <td><%= usuarios[i].usu_email %></td>
 			        <td><%= usuarios[i].usu_nome %></td>
 			    	<td><%= usuarios[i].usu_confiabilidade %></td>
 			    	<td>
-			    		<button name="id_usuario" type="submit" value=<%= usuarios[i].usu_idusuario %> class="btn-flat">
-			    			<i class="clear small material-icons">clear</i>
+			    		<button name="id_usuario" type="submit" value=<%= usuarios[i].usu_idusuario %> class="ui red button">
+			    			Deletar
 			    		</button>
-			    		<a name="id_usuario" href="/usuarios/<%= usuarios[i].usu_idusuario %>/edit" class="btn-flat">
-			    			<i class="edit small material-icons">edit</i>
+					</td>
+					<td>
+			    		<a name="id_usuario" href="/usuarios/<%= usuarios[i].usu_idusuario %>/edit" class="ui gray button">
+			    			Editar
 			    		</a>
-			    		<a name="id_usuario" href="/usuarios/<%= usuarios[i].usu_idusuario %>/show" class="btn-flat">
-			    			<i class="edit small material-icons">remove_red_eye</i>
+					</td>
+					<td>
+			    		<a name="id_usuario" href="/usuarios/<%= usuarios[i].usu_idusuario %>/show" class="ui gray button">
+			    			Ver
 			    		</a>
 			    	</td>
 			      </tr>
@@ -55,11 +64,7 @@
 			</table>
 			
 		</form>
-		<a class="btn-floating btn-large waves-effect waves-light red add" href="/usuarios/new"><i class="material-icons">add</i></a>
-
-	</main>
-	<script src="../js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="../js/materialize.js"></script>
-    <script type="text/javascript" src="../js/init_dom.js"></script>
-</body>
-</html>
+		
+	</div>
+	
+	<%- include ../templates/bottom.ejs %>

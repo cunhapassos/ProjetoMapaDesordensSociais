@@ -49,12 +49,6 @@ var knex = require('knex')({
 
 const st = knexPostgis(knex);
 
-// var result = knex("denuncia").select(st.x('den_local_desordem'), st.y('den_local_desordem')).then(function(result){
-// 	console.log(result[0].den_local_desordem);
-// });
-
-
-// consign().include('routes').then();
 
 app.get("/", function(req,res){
 	sess = req.session;
@@ -81,11 +75,22 @@ app.get("/login", function(req,res){
 
 });
 
+app.get("/logout", function(req,res){
+	req.session.destroy(function(err) {
+		if(err) {
+		   console.log(err);
+		 } else {
+		   res.redirect('/');
+		 }
+   })
+})
+
 app.post("/login", function(req,res){
 	sess = req.session;
 
 	var senha = req.body.password;
 	var email = req.body.email;
+	
 	console.log(email);
 	senha = md5(senha);
 
@@ -99,7 +104,9 @@ app.post("/login", function(req,res){
 			res.render("login", {failed : 1});
 		}
 		else{
+			sess = req.session;
 			sess.email = email;
+			sess.login = usuario[0].usu_login;
 			sess.usuario_id = usuario[0].usu_idusuario;
 			res.redirect("admin");
 		}
@@ -125,8 +132,8 @@ app.get("/admin", function(req,res){
 	if (sess.email) {
 		
 		knex.raw('select ST_X(den_local_desordem),ST_Y(den_local_desordem), den_status, den_descricao, den_iddenuncia from denuncia').then(function(result){
-
-			res.render('admin', {pontos : result.rows, desordens : desordens_result, polygons : polygons_result});
+			sess = req.session;
+			res.render('admin', {pontos : result.rows, desordens : desordens_result, polygons : polygons_result, sess : sess});
 		});
 
 	}
