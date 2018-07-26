@@ -2,8 +2,22 @@
     <%- include ../templates/sidenav.ejs %>
     <% var found = 0; %>
     <div class="ui pusher">
-
-        <h1 class="ui dividing header">Usuário nº <%= usuario.usu_idusuario %></h1>
+        <% fotos.forEach(function (foto){ %>
+            <% if(foto.fot_idusuario == usuario.usu_idusuario){ %>
+                <% found = 1; %>
+                <h2 class="ui header">
+                    <img src="/../images/usuarios/<%= foto.fot_idusuario %>.jpg" class="ui image">
+                    Usuário nº: <%= usuario.usu_idusuario %>
+                </h2>
+            <% } %>
+        <% }) %>
+        <%  if(found == 0){%>
+            <h2 class="ui header">
+                <img src="/../images/usuarios/no-image.png" class="ui image">
+                Usuário nº: <%= usuario.usu_idusuario %>
+            </h2>
+        <% } %>
+        <!-- <h1 class="ui dividing header">Usuário nº <%= usuario.usu_idusuario %></h1> -->
         <table class="ui celled table uitable">
             <tr>
                 <th></th>
@@ -17,7 +31,7 @@
                 <td><strong>Login: </strong><%= usuario.usu_login %></td>
             </tr>
             <tr>
-                <td><strong>Data de nascimento:</strong> <%= usuario.usu_nascimento %></td>
+                <td><strong>Data de nascimento:</strong> <%= nascimento %></td>
             </tr>
             <tr>
                 <td><strong>CPF:</strong> <%= usuario.usu_cpf %></td>
@@ -38,7 +52,7 @@
                 <td><strong>Telefone: </strong><%= usuario.usu_telefone %></td>
             </tr>
             <tr>
-                <td><strong>Data de Cadastro: </strong><%= usuario.usu_data_cadastro %></td>
+                <td><strong>Data de Cadastro: </strong><%= cadastro %></td>
             </tr>
         </table>
         </div>

@@ -4,6 +4,7 @@ var router = express.Router({mergeParams : true});
 db = config.database;
 
 var knex = require('knex')(db);
+monName = new Array ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "agosto", "outubro", "novembro", "dezembro")
 
 router.get("/usuarios/new", function(req,res){
 	
@@ -71,7 +72,7 @@ router.post("/usuarios",function(req,res){
 		usu_telefone : telefone,
 		usu_data_cadastro : today
 	}).then(function(){
-		res.redirect("../admin");
+		res.redirect("../usuarios");
 	}).catch(function(error){
 		console.log(error);
 		res.redirect("new");
@@ -119,10 +120,12 @@ router.get("/usuarios/:id/show", function(req,res){
 			var new_cpf;
 			new_cpf = cpf.substr(0, 3) + "." + cpf.substr(3,3) + "." + cpf.substr(6,3) + "-" + cpf.substr(9,2);
 			telefone = "(" + telefone.substr(0,2) + ") " + telefone.substr(2,5) + "-" + telefone.substr(7,4);
+			nascimento = formatDate(found[0].usu_nascimento);
+			cadastro = formatDate(found[0].usu_data_cadastro);
 
 			knex.select().from('foto_usuario').then(function(resp){
 				fotos = resp;
-				res.render("usuario/show", {usuario : found[0], cpf : new_cpf, telefone : telefone, fotos : fotos})
+				res.render("usuario/show", {usuario : found[0], cpf : new_cpf, telefone : telefone, fotos : fotos, nascimento : nascimento, cadastro : cadastro})
 			})
 			
 		});
@@ -153,5 +156,24 @@ router.put("/usuarios/:id",function(req,res){
 		res.redirect("/usuarios/"+ req.params.id + "/edit");
 	})
 })
+
+function formatDate(date){
+	date = date.toLocaleDateString();
+			
+	ano = date.substr(0, 4);
+	mes = date.substr(5,1);
+	dia = date.substr(7,1);
+	
+	if (mes <= 9){
+		mes = "0" + mes;
+	}
+	if(dia <= 9){
+		dia = "0" + dia;
+	}
+
+	date = (dia + "/" + mes + "/" + ano);
+
+	return date;
+}
 
 module.exports = router;

@@ -1,4 +1,5 @@
 var express = require('express');
+var url = require('url');
 var config = require("../config/db.js");
 var router = express.Router({mergeParams : true});
 db = config.database;
@@ -13,8 +14,9 @@ router.get("/desordem/new", function(req,res){
 		var orgaos_result;
 
 		knex.select().from('org_orgao').then(function(result){
-			//orgaos_result = result;
-			res.render("desordem/create", {orgaos : result });
+			knex.select().from('tipo_desordem').then(function(tipos){
+				res.render("desordem/create", {orgaos : result, tipos : tipos});
+			})
 		})		
 	}else{
 		res.redirect("../login");
@@ -33,30 +35,16 @@ router.post("/desordem/create",function(req,res){
 	knex('desordem').insert({
 		des_iddesordem: id,
 		des_tipo: tipo,
-		des_natureza: natureza,
 		des_descricao: descricao,
 		org_idorgao: orgao
 	}).then(function(){
-		res.redirect("../admin");
+		res.redirect("../desordens");
 	}).catch(function(error){
 		console.log(error);
 		res.redirect("new");
 	});
 
 })
-
-// router.get("/desordem/delete", function(req,res){
-// 	sess = req.session;
-
-// 	if (sess.email) {
-// 		knex.select().from('desordem').then(function(desordens){
-// 			res.render("delete_desordem", {desordens : desordens});
-// 		});
-// 	}
-// 	else{
-// 		res.redirect("../login");
-// 	}
-// })
 
 router.post("/desordem/delete", function(req,res){
 
@@ -66,6 +54,14 @@ router.post("/desordem/delete", function(req,res){
 	.where('des_iddesordem', id_desordem)
 	.del().then(function(){
 		res.redirect("/desordens");
+	}).catch(function(err){
+		console.log("deu ruim")
+		res.redirect(url.format({
+		pathname:"../desordens",
+		query: {
+			"failed": 1
+			}
+		}));
 	})
 })
 
@@ -96,10 +92,13 @@ router.get("/desordens", function(req,res){
 	
 	if(sess.email){
 
+		
 		knex.select().from("tipo_desordem").then(function(found){
 			tipos = found;
 			knex.select().from("desordem").then(function(desordens){
-				res.render("desordem/index", {desordens : desordens, tipos : tipos});
+					knex.select().from("org_orgao").then(function(orgaos){
+						res.render("desordem/index", {desordens : desordens, tipos : tipos, orgaos : orgaos, failed : req.query});
+					})
 			})
 		})
 

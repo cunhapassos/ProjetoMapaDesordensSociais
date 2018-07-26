@@ -2,8 +2,10 @@
 	<%- include ../templates/sidenav.ejs %>	
 
 	<div class="ui pusher">
-		<h1 class="ui dividing header">Tipos</h1>
-		<hr>
+		<div>
+			<h1 style="float: left;" class="ui dividing header">Tipos de Desordem</h1>
+			<a style="float: right;" href="/tipos/new" class="ui secondary basic button">Adicionar</a>
+		</div>
 		<form method="post" action="/tipos/delete">
 			<table class="ui celled table uitable">
 

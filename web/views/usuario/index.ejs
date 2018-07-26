@@ -2,9 +2,23 @@
 	<%- include ../templates/sidenav.ejs %>
 	
 	<div class="ui pusher">	
+		<div>
+			<h1 class="ui dividing header">Usuários Cadastrados</h1>
+		</div>
+		<br>
+		<div class="ui form">
+			<div class="two fields">
+				<div class="ui inline field">
+					<label>Busca</label>
+					<input id="busca" type="text">
+				</div>
+				<div class="field">
+					<a style="float: right;" href="/usuarios/new" class="ui secondary basic button">Adicionar</a>
+				</div>
+			</div>
+		</div>
+		<br>
 
-		<h1 class="ui dividing header">Usuários Cadastrados</h1>
-		<hr>
 		<form method="post" action="/usuarios/delete">
 			<table class="ui celled selectable table uitable">
 
@@ -35,7 +49,7 @@
 							</td>
 						<% } %>
 						<% if(fotos[j].fot_idusuario == usuarios[i].usu_idusuario){ %>
-							<td><img class="img_usuario responsive-img" src="../images/usuarios/<%= fotos[0].fot_idusuario %>.jpg" width="50" /></td>
+							<td><img class="img_usuario responsive-img" src="../images/usuarios/<%= fotos[j].fot_idusuario %>.jpg" width="50" /></td>
 							<% } %>
 					<% } %>
 			        <td><%= usuarios[i].usu_login %></td>
@@ -68,3 +82,13 @@
 	</div>
 	
 	<%- include ../templates/bottom.ejs %>
+	<script>
+		$(document).ready(function(){
+			$("#busca").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$("table tr").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
+		});
+	</script>
