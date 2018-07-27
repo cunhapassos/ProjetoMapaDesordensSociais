@@ -1,0 +1,35 @@
+ <%- include ../templates/sidenav.ejs %>
+
+ <div class="ui pusher">
+     <div class="ui container">
+            <h1 class="ui dividing header">Área do Gestor</h1>
+            <h2>Denúncias</h2>
+            <table id="desordemGestor" class="tablesorter ui celled table uitable">
+                <thead>
+                    <tr class="center aligned">
+                        <th>ID</th>
+                        <th>Tipo</th>
+                        <th>Status</th>
+                        <th>Descrição</th>
+                        <th>Usuário</th>
+                    </tr>
+                </thead>
+                <tbody>
+					<% for(var i = 0; i < denuncias.length; i++) { %>
+					
+					<tr class="center aligned">
+						<td><%= denuncias[i].den_iddenuncia %></td>
+                        <td><%= denuncias[i].des_descricao %></td>
+                        <td><%= denuncias[i].den_status %></td>
+                        <td><%= denuncias[i].den_descricao %></td>
+                        <td><%= denuncias[i].usu_login %></td>
+                    </tr>
+                    <%}%>
+                </tbody>
+            </table>
+     </div>
+ </div>
+
+<script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.js"></script>
+<script type="text/javascript" src="../../js/gestor/init.js"></script>
