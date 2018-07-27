@@ -3,13 +3,18 @@
   <%- include ../templates/sidenav.ejs %>
  
  <div class="ui pusher">
-    <h1 class="ui dividing header">Nova Denúncia</h1>
+    <h1 class="ui dividing header">Nova Desordem</h1>
     <form class="ui form" method="post" action="/desordem/create">
       <div class="field">
         
           <label for="first_name">Tipo</label>
-          <input placeholder="tipo" name="tipo" type="text" class="validate">
-       
+          <!-- <input placeholder="tipo" name="tipo" type="text" class="validate"> -->
+          <select name="tipo">
+            <% if(tipos){ 
+              for(var i = 0; i < tipos.length; i++){%>
+                  <option value=<%= tipos[i].tde_idtipo_desordem %> ><%= tipos[i].tde_nome %></option>
+              <% }} %>
+          </select>
       </div>
 
       <div class="field">
@@ -24,18 +29,16 @@
         <select name="orgao">
           <option value="" disabled selected>Qual órgao</option>
           <% if(orgaos){ 
-              for(var i = 0; i < orgaos.length; i++){%>
-                  <option value=<%= orgaos[i].org_idorgao %> ><%= orgaos[i].org_nome %></option>
+            for(var i = 0; i < orgaos.length; i++){%>
+              <option value=<%= orgaos[i].org_idorgao %> ><%= orgaos[i].org_nome %></option>
               <% }} %>
-        </select>
-      </div>
+            </select>
+          </div>
+          <div class="field">
+            <button class="ui primary button" type="submit" name="action">Salvar</button>
+          </div>
     </div>
 
-      <div class="field">
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-          <i class="material-icons right">send</i>
-        </button>
-      </div>
     </form>
   </div>
     

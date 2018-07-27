@@ -8,6 +8,8 @@ var session = require('express-session');
 var md5 = require('md5');
 var consign = require('consign');
 var methodOverride = require('method-override');
+var io = require('socket.io')();
+var http = require('http');
 var expressSanitizer = require("express-sanitizer");
 
 //ROTAS
@@ -26,6 +28,8 @@ app.use(expressSanitizer());
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.engine('html', require('ejs').renderFile);
+app.io = io;
+
 
 //DEFININDO SESSION
 var sess;
@@ -134,7 +138,8 @@ app.get("/admin", function(req,res){
 		
 		knex.raw('select ST_X(den_local_desordem),ST_Y(den_local_desordem), den_status, den_descricao, den_iddenuncia from denuncia').then(function(result){
 			sess = req.session;
-			res.render('admin', {pontos : result.rows, desordens : desordens_result, polygons : polygons_result, sess : sess});
+			console.log(req.query)
+			res.render('admin', {pontos : result.rows, desordens : desordens_result, polygons : polygons_result, sess : sess, query : req.query});
 		});
 
 	}
@@ -156,6 +161,22 @@ app.use(usuarioRouter);
 app.use(tipoRouter);
 app.use(gestorRouter);
 
-app.listen('3000', () => { //abrindo a aplicação na porta 3000
-	console.log("Server started");
+var server = http.createServer(app);
+app.io.attach(server);
+
+server.listen('3000', () => {
+	console.log("server started");
+})
+
+io.on('connection', function (socket) {
+	socket.emit('news', { hello: 'world' });
+	socket.on('my other event', function (data) {
+		console.log("teste " + data.my);
+	});
 });
+	   
+
+
+// app.listen('3000', () => { //abrindo a aplicação na porta 3000
+// 	console.log("Server started");
+// });

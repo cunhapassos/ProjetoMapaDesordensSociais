@@ -119,22 +119,41 @@
     <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
     <script type="text/javascript">
 
-      document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.modal');
-        var instances = M.Modal.init(elems);
-      });
+        document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.modal');
+          var instances = M.Modal.init(elems);
+        });
+        
+        var marker_zoom_x;
+        var marker_zoom_y;
+        var query = <%-JSON.stringify(query)%>;
+        var markes = <%-JSON.stringify(pontos)%>;
+        var polygons = <%-JSON.stringify(polygons)%>;
 
+        markes.forEach(function (marker){
+          if(marker.den_iddenuncia == query.denuncia){
+            marker_zoom_x = marker.st_x;
+            marker_zoom_y = marker.st_y;
+          }
+        })
 
-
-        var map = L.map('map').setView([-15.782759, -47.870619], 13);
-
+        if(jQuery.isEmptyObject(query)){
+          var map = L.map('map').setView([-15.782759, -47.870619], 13);
+        }else{
+          var map = L.map('map', {
+              center: [marker_zoom_x, marker_zoom_y],
+              zoom: 18
+          });
+        }
+        
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        var markes = <%-JSON.stringify(pontos)%>;
-        var polygons = <%-JSON.stringify(polygons)%>;
-        
+
+        if(jQuery.isEmptyObject(query)){
+          console.log("isabella");
+        }
 
         var markersGroup = L.markerClusterGroup();
 

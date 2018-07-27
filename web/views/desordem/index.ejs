@@ -3,7 +3,10 @@
 
 	<div class="ui pusher">
 		<div class="ui container">
-			<h1 class="ui dividing header">Desordens</h1>
+			<div>
+				<h1 style="float: left;" class="ui dividing header">Desordens</h1>
+				<a style="float: right;" href="/desordem/new" class="ui secondary basic button">Adicionar</a>
+			</div>
 
 			<form method="post" action="/desordem/delete">
 				<table class="ui celled table uitable">
@@ -12,6 +15,8 @@
 					<tr class="center aligned">
 						<th>Id</th>
 						<th>Tipo</th>
+						<th>Descrição</th>
+						<th>Órgão</th>
 						<th>Excluir</th>
 						<th>Editar</th>
 					</tr>
@@ -28,6 +33,13 @@
 								<td><%= tipos[j].tde_nome  %></td>
 						<% }} %>
 
+						<td><%= desordens[i].des_descricao %></td>
+
+						<% for(var k = 0; k < orgaos.length; k++) { %>
+							<% if(orgaos[k].org_idorgao == desordens[i].org_idorgao){ %>
+								<td><%= orgaos[k].org_nome  %></td>
+						<% }} %>
+
 						<td><a  name="id_desordem" href="/desordens/<%= desordens[i].des_iddesordem %>/edit" class="links ui gray button">Editar</a></td>
 
 						<td><a><button name="id_desordem" type="submit" value=<%= desordens[i].des_iddesordem %> class="ui red button links">Excluir</button></a></td>
@@ -38,9 +50,25 @@
 					</tbody>
 				</table>
 				
+		
 			</form>
 		</div>
 	</div>
 	
 
 	<%- include ../templates/bottom.ejs %>
+
+	<script>
+		var failed = <%-JSON.stringify(failed)%>;
+		if (Object.values(failed) == 1) {
+			alert("Existem denúncias relacionadas a esta desordem");
+
+			failed = 0;
+		}
+	</script>
+	<script>
+		var socket = io.connect('http://localhost:3000');
+	
+		socket.emit('my other event', { my: 'sistema desordens' });
+
+	</script>

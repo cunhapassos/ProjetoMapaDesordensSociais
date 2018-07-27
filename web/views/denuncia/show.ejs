@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="../../css/materialize.css">
-    <link rel="stylesheet" type="text/css" href="../../css/admin.css">
-    <link rel="stylesheet" type="text/css" href="../../css/style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-<body>
-    <%- include templates/sidenav.ejs %>
 
-    <main>
+    <%- include ../templates/sidenav.ejs %>
 
-        <%- include templates/navbar.ejs %>
+    <div class="ui pusher">
+
+        
         
         <h3>Denúncia nº <%= denuncia.den_iddenuncia %></h3>
         
-        <table>
+        <table class="ui celled table uitable">
             <tr>
                 <th></th>
                 <th></th>
@@ -30,13 +20,13 @@
                 <td><strong>Usuario: </strong><%= denuncia.usu_nome %></td>
             </tr>
             <tr>
-                <td><strong>Data e hora do registro:</strong> <%= denuncia.den_datahora_registro %></td>
+                <td><strong>Data e hora do registro:</strong> <%= registro %></td>
             </tr>
             <tr>
-                <td><strong>Data e hora que ocorreu:</strong> <%= denuncia.den_datahora_ocorreu %></td>
+                <td><strong>Data e hora que ocorreu:</strong> <%= ocorreu %></td>
             </tr>
             <tr>
-                <td><strong>Data e hora da solução: </strong><%= denuncia.den_datahora_solucao %></td>
+                <td><strong>Data e hora da solução: </strong><%= solucao %></td>
             </tr>
             <tr>
                 <td><strong>Status: </strong><%= denuncia.den_status %></td>
@@ -55,6 +45,5 @@
             </tr>
         </table>
 
-    </main>
-</body>
-</html>
+    </div class="ui pusher">
+    <%- include ../templates/bottom.ejs %>
