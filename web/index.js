@@ -18,6 +18,7 @@ var orgaoRouter = require("./routes/orgaos.js");
 var usuarioRouter = require("./routes/usuarios.js");
 var tipoRouter = require("./routes/tipos.js");
 var denunciaRouter = require("./routes/denuncias.js");
+var gestorRouter = require("./routes/gestor.js");
 
 //CONFIGURAÇÕES GERAIS
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -158,6 +159,7 @@ app.use(orgaoRouter);
 app.use(desordemRouter);
 app.use(usuarioRouter);
 app.use(tipoRouter);
+app.use(gestorRouter);
 
 var server = http.createServer(app);
 app.io.attach(server);

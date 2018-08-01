@@ -12,6 +12,7 @@
     "express-sanitizer": "^1.0.4",
     "express-session": "^1.15.6",
     "global": "^4.3.2",
+    "jquery-address": "^1.6.0",
     "knex": "^0.14.6",
     "knex-postgis": "^0.6.0",
     "md5": "^2.2.1",
@@ -19,7 +20,9 @@
     "nodemon": "^1.17.3",
     "npm": "^6.0.0",
     "pg": "^7.4.1",
+    "semantic-ui": "^2.3.3",
     "socket.io": "^2.1.1",
+    "tablesorter": "^2.30.7",
     "url": "^0.11.0"
   },
   "devDependencies": {},
