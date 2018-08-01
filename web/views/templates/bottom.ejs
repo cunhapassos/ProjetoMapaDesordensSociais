@@ -1,12 +1,19 @@
 <br><br>
 <script src="/socket.io/socket.io.js"></script>
 <script src="../../js/jquery-3.3.1.min.js" ></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="../../js/jquery.mask.js"></script>
     <script src="../../js/semantic.min.js" ></script>
     <script>
-        // $('.ui.sidebar')
-        //   .sidebar('toggle')
-        // ;
+        $(document).ready(function(){
 
+            $('.date').mask('00/00/0000');
+            $('.cpf').mask('000.000.000-00', {reverse: true});
+            $('.phone').mask('(00) 00000-0000');
+            $('.time').mask('00:00:00'); 
+
+        });
+        
         if (failed == 1) {
             alert("Erro ao inserir na base de dados");
         }

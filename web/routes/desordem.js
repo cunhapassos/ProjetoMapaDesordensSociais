@@ -59,7 +59,8 @@ router.post("/desordem/delete", function(req,res){
 		res.redirect(url.format({
 		pathname:"../desordens",
 		query: {
-			"failed": 1
+			"failed": 1,
+			"id_desordem" : id_desordem
 			}
 		}));
 	})
@@ -97,7 +98,7 @@ router.get("/desordens", function(req,res){
 			tipos = found;
 			knex.select().from("desordem").then(function(desordens){
 					knex.select().from("org_orgao").then(function(orgaos){
-						res.render("desordem/index", {desordens : desordens, tipos : tipos, orgaos : orgaos, failed : req.query});
+						res.render("desordem/index", {desordens : desordens, tipos : tipos, orgaos : orgaos, failed : req.query.failed, id_desordem : req.query.id_desordem});
 					})
 			})
 		})

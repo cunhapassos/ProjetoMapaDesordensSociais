@@ -10,7 +10,10 @@ router.get("/usuarios/new", function(req,res){
 	
 	sess = req.session;
 	if(sess.email){
-		res.render("usuario/create");
+		knex.select().from("tipo_usuario").then(function(result){
+			res.render("usuario/create", {tipos : result});
+		});
+
 	}else{
 		res.redirect("../login");
 	}
@@ -75,7 +78,7 @@ router.post("/usuarios",function(req,res){
 		res.redirect("../usuarios");
 	}).catch(function(error){
 		console.log(error);
-		res.redirect("new");
+		res.redirect("/usuarios/new");
 	});
 
 })

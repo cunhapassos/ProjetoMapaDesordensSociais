@@ -1,4 +1,4 @@
-
+	
 	<%- include ../templates/sidenav.ejs %>	
 
 	<div class="ui pusher">
@@ -55,15 +55,19 @@
 		</div>
 	</div>
 	
-
 	<%- include ../templates/bottom.ejs %>
 
 	<script>
 		var failed = <%-JSON.stringify(failed)%>;
+		var id_desordem = <%-JSON.stringify(id_desordem)%>;
+		var desordens = <%- JSON.stringify(desordens) %>;
+
 		if (Object.values(failed) == 1) {
 			alert("Existem denúncias relacionadas a esta desordem");
-
+			
 			failed = 0;
+
+			window.location.replace("/denuncias?filtro_desordem=" + id_desordem);
 		}
 	</script>
 	<script>

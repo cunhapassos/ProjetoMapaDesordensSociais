@@ -37,8 +37,14 @@
       </div>
       <div class="field">
         
-          <label>Tipo</label>
-          <input placeholder="Tipo" name="tipo" type="text" class="validate">
+        <label>Tipo</label>
+        <select name="tipo" class="validate">
+            <option value="" disabled selected>Selecione o tipo</option>
+            <% 
+            for(var i = 0; i < tipos.length; i++){%>
+                <option value="<%= tipos[i].tus_idtipo %>"><%= tipos[i].tus_nome %></option>
+            <% } %>
+        </select>
         
       </div>
       <div class="field">
