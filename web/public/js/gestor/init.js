@@ -1,6 +1,6 @@
 $(document).ready(function() 
     { 
-        $("#desordemGestor").tablesorter(); 
-        console.log("o caralho");
+        $("#desordemGestor").tablesorter();
+        $('.tabular.menu .item').tab({history: false}); 
     } 
 );
