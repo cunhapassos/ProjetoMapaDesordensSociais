@@ -112,6 +112,7 @@ app.post("/login", function(req,res){
 			sess = req.session;
 			sess.email = email;
 			sess.login = usuario[0].usu_login;
+			sess.tipo = usuario[0].usu_tipo;
 			sess.usuario_id = usuario[0].usu_idusuario;
 			res.redirect("admin");
 		}

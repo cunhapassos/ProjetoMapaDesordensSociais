@@ -39,15 +39,16 @@
       Tipos de desordem
     </a>
     <br>
-    <div class="item" id="gestao">
-      
-      <div class="header">Gestor</div>
-      <div class="menu">
+    <% if (sess.tipo == 1){ %>
+      <div class="item" id="gestao">
         
-        <a class="item" href="/gestor" >Acesso ao painel do Gestor</a>
+        <div class="header">Gestor</div>
+        <div class="menu">
+          
+          <a class="item" href="/gestor" >Acesso ao painel do Gestor</a>
+        </div>
       </div>
-    </div>
-
+    <% } %>
 
   </div>
 
