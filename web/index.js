@@ -20,6 +20,15 @@ var tipoRouter = require("./routes/tipos.js");
 var denunciaRouter = require("./routes/denuncias.js");
 var gestorRouter = require("./routes/gestor.js");
 
+//ROTAS api
+var ApidesordemRouter = require("./api/desordem.js");
+var ApiorgaoRouter = require("./api/orgaos.js");
+var ApiusuarioRouter = require("./api/usuarios.js");
+var ApitipoRouter = require("./api/tipos.js");
+var ApidenunciaRouter = require("./api/denuncias.js");
+var ApigestorRouter = require("./api/gestor.js");
+
+
 //CONFIGURAÇÕES GERAIS
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.static(__dirname + '/public'));
@@ -45,10 +54,10 @@ var knex = require('knex')({
   client: 'pg',
   version: '10.3',
   connection: {
-    host : 'localhost',
-    user : 'postgres',
-    password : 'postgres',
-    database : 'ProjetoMDS'
+	host : 'localhost',
+	user : 'postgres',
+	password : 'postgres',
+	database : 'ProjetoMDS'
   }
 });
 
@@ -161,6 +170,13 @@ app.use(desordemRouter);
 app.use(usuarioRouter);
 app.use(tipoRouter);
 app.use(gestorRouter);
+
+app.use(ApidenunciaRouter);
+app.use(ApiorgaoRouter);	
+app.use(ApidesordemRouter);
+app.use(ApiusuarioRouter);
+app.use(ApitipoRouter);
+app.use(ApigestorRouter);
 
 var server = http.createServer(app);
 app.io.attach(server);
