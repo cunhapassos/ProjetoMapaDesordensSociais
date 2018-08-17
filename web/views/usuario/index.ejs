@@ -19,7 +19,7 @@
 		</div>
 		<br>
 
-		<form method="post" action="/usuarios/delete">
+		<form onsubmit=" return validate(this);" method="post" action="/usuarios/delete">
 			<table class="ui celled selectable table uitable">
 
 			    <thead>
@@ -57,7 +57,7 @@
 			        <td><%= usuarios[i].usu_nome %></td>
 			    	<td><%= usuarios[i].usu_confiabilidade %></td>
 			    	<td>
-			    		<button name="id_usuario" type="submit" value=<%= usuarios[i].usu_idusuario %> class="ui red button">
+			    		<button name="id_usuario" value=<%= usuarios[i].usu_idusuario %> class="ui red button">
 			    			Deletar
 			    		</button>
 					</td>

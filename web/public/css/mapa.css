@@ -2,7 +2,7 @@
     z-index:1;
 } /*essa vai ficar por baixo*/
 
-.add{
+.add.red{
     position: fixed;
     bottom: 50px;
     right: 50px;
@@ -12,3 +12,14 @@
   #modal1{
     padding: 20px;
   }
+
+  .add.blue{
+    position: fixed;
+    bottom: 100px;
+    right: 50px;
+    z-index: 2;
+  }
+
+.sr-only{
+  display: none !important;
+}

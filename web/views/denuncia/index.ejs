@@ -22,7 +22,8 @@
                 </select>
                 </div>
             </form>
-            
+            <br>
+            <form onsubmit=" return validate(this);" id="form_deletar" method="post" action="/denuncias/delete/">
             <table class="ui celled table uitable">
                 <thead>
                     <tr class="center aligned">
@@ -32,6 +33,7 @@
                         <th>Nível de Confiabilidade</th>
                         <th>Descrição</th>
                         <th>Anonimato</th>
+                        <th>Excluir</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,11 +52,17 @@
                             <td><%= denuncia.den_nivel_confiabilidade %></td>
                             <td><%= denuncia.den_descricao %></td>
                             <td><%= denuncia.den_anonimato %></td>
+                            <td>
+                                <button name="id_denuncia" value=<%= denuncia.den_iddenuncia %> class="ui red button">
+                                    Deletar
+                                </button>
+                            </td>
                         </td>
                         <% } 
                     })%> 
                 </tbody>
             </table>
+            </form>
         </div>
     </div>
 

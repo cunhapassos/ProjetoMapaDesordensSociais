@@ -8,7 +8,7 @@
 			<a style="float: right;" href="/orgaos/new" class="ui secondary basic button">Adicionar</a>
 		</div>
 
-		<form method="post" action="/orgaos/delete">
+		<form onsubmit=" return validate(this);" method="post" action="/orgaos/delete">
 			<table class="ui celled table uitable">
 
 			    <thead>
@@ -27,7 +27,7 @@
 			      <tr class="center aligned">
 			        <td><%= orgaos[i].org_nome %></td>
 			        <td><%= orgaos[i].org_descricao %></td>
-			    	<td><button name="id_orgao" type="submit" value=<%= orgaos[i].org_idorgao %> class="ui red button">Excluir</button></td>
+			    	<td><button name="id_orgao" value=<%= orgaos[i].org_idorgao %> class="ui red button">Excluir</button></td>
 					
 					<td><a name="id_desordem" href="/orgaos/<%= orgaos[i].org_idorgao %>/edit" class="ui gray button">Editar</a></td>
 						

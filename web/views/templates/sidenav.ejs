@@ -10,7 +10,7 @@
     <title>Sistema</title>
 </head>
 <body>
-
+  <% if (sess.login){ %>
   <div class="ui visible left sidebar inverted vertical menu">
     
     <div class="item">
@@ -50,6 +50,17 @@
         </div>
       </div>
     <% } %>
+  <% } %>
+  <% if (!sess.login){ %>
+    <div class="ui menu inverted">
+      <div class="center menu">
+        <a class="item">Sistema Gerenciador de Desordens</a>
+      </div>
+      <div class="right menu">
+        <a href="/login" class="item">Login</a>
+      </div>
+    </div>
+  <% } %>
 
   </div>
 
