@@ -1,0 +1,4 @@
+#Sun May 27 21:26:33 BRT 2018
+base.0=/Users/paulopassos/Documents/DESENVOLVIMENTO/ProjetoMapaDesordensSociais/aplicativoAndroid/app/build/intermediates/transforms/dexMerger/debug/21
+path.0=classes.dex
+renamed.0=classes.dex

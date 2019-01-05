@@ -1,0 +1,60 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/paulopassos/Documents/DESENVOLVIMENTO/ProjetoMapaDesordensSociais/aplicativoAndroid/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-de/values-de.xml",
+            "map": [
+                {
+                    "source": "/Users/paulopassos/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/27257a3542d8bcbbd43d94e497e35cb8/res/values-de/values-de.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "27",
+                        "startColumns": "4",
+                        "startOffsets": "2312",
+                        "endColumns": "100",
+                        "endOffsets": "2408"
+                    }
+                },
+                {
+                    "source": "/Users/paulopassos/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/0e790c080d279fbcb55e5fcb29a83494/res/values-de/values-de.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,210,308,420,506,611,726,803,879,961,1072,1175,1274,1385,1487,1594,1750,1852",
+                        "endColumns": "104,97,111,85,104,114,76,75,81,110,102,98,110,101,106,155,101,81",
+                        "endOffsets": "205,303,415,501,606,721,798,874,956,1067,1170,1269,1380,1482,1589,1745,1847,1929"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,26",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,210,308,420,506,611,726,803,879,961,1072,1175,1274,1385,1487,1594,1750,2230",
+                        "endColumns": "104,97,111,85,104,114,76,75,81,110,102,98,110,101,106,155,101,81",
+                        "endOffsets": "205,303,415,501,606,721,798,874,956,1067,1170,1269,1380,1482,1589,1745,1847,2307"
+                    }
+                },
+                {
+                    "source": "/Users/paulopassos/.gradle/caches/transforms-1/files-1.1/osmdroid-android-6.0.1.aar/b9239f22b82eb97ac3277f49067184ea/res/values-de/values-de.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,94,196,244,294,335,384,433,480",
+                        "endColumns": "38,101,47,49,40,48,48,46,45",
+                        "endOffsets": "89,191,239,289,330,379,428,475,521"
+                    },
+                    "to": {
+                        "startLines": "19,20,21,22,23,24,25,28,29",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1852,1891,1993,2041,2091,2132,2181,2413,2460",
+                        "endColumns": "38,101,47,49,40,48,48,46,45",
+                        "endOffsets": "1886,1988,2036,2086,2127,2176,2225,2455,2501"
+                    }
+                }
+            ]
+        }
+    ]
+}
