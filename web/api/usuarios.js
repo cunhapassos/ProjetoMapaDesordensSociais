@@ -6,12 +6,12 @@ db = config.database;
 var knex = require('knex')(db);
 monName = new Array ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "agosto", "outubro", "novembro", "dezembro")
 
-router.get("/usuarios/new", function(req,res){
+router.get("/api/usuarios/new", function(req,res){
 	
 	sess = req.session;
 	if(sess.email){
 		knex.select().from("tipo_usuario").then(function(result){
-			res.render("usuario/create", {tipos : result});
+			res.json({tipos : result});
 		});
 
 	}else{
@@ -20,7 +20,7 @@ router.get("/usuarios/new", function(req,res){
 
 });
 
-router.get("/usuarios", function(req,res){
+router.get("/api/usuarios", function(req,res){
 	sess =req.session;
 
 	if(sess.email){
@@ -29,7 +29,7 @@ router.get("/usuarios", function(req,res){
 		knex.select().from("foto_usuario").then(function(result){
 			fotos = result;
 			knex.select().from("usuario").then(function(usuarios){
-				res.render("usuario/index", {usuarios : usuarios, fotos : fotos});
+				res.json({usuarios : usuarios, fotos : fotos});
 			})
 		})
 
@@ -95,7 +95,7 @@ router.post("/usuarios/delete", function(req,res){
 	})
 })
 
-router.get("/usuarios/:id/edit", function(req,res){
+router.get("/api/usuarios/:id/edit", function(req,res){
 	sess =req.session;
 
 	if(sess.email){
@@ -103,14 +103,14 @@ router.get("/usuarios/:id/edit", function(req,res){
 		var usuarios;
 
 		knex('usuario').where({usu_idusuario : id}).select().then(function(found){
-			res.render("usuario/update", {usuario : found[0]})
+			res.json({usuario : found[0]})
 		});
 	}else{
 		res.redirect("../../login");
 	}
 })
 
-router.get("/usuarios/:id/show", function(req,res){
+router.get("/api/usuarios/:id/show", function(req,res){
 	sess =req.session;
 
 	if(sess.email){
@@ -129,7 +129,7 @@ router.get("/usuarios/:id/show", function(req,res){
 
 			knex.select().from('foto_usuario').then(function(resp){
 				fotos = resp;
-				res.render("usuario/show", {usuario : found[0], cpf : new_cpf, telefone : telefone, fotos : fotos, nascimento : nascimento, cadastro : cadastro})
+				res.json({usuario : found[0], cpf : new_cpf, telefone : telefone, fotos : fotos, nascimento : nascimento, cadastro : cadastro})
 			})
 			
 		});

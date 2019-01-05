@@ -5,36 +5,27 @@ db = config.database;
 
 var knex = require('knex')(db);
 
-router.get("/denuncias/:id/show", function(req, res){
+router.get("/api/denuncias/:id/show", function(req, res){
     sess = req.session;
 
     knex.raw('select ST_X(den_local_desordem),ST_Y(den_local_desordem), den_status, den_descricao, den_iddenuncia, den_iddesordem, den_idusuario,den_datahora_registro, den_datahora_ocorreu, den_datahora_solucao, den_status, den_nivel_confiabilidade, den_descricao, den_anonimato, usu_nome, des_descricao from denuncia inner join usuario on usu_idusuario = den_idusuario inner join desordem on des_iddesordem = den_iddesordem where den_iddenuncia = ' + req.params.id).then(function(result){
 
-        if(result.rows[0].den_datahora_registro){
-            registro = formatDate(result.rows[0].den_datahora_registro);
-        }else{
-            registro = result.rows[0].den_datahora_registro;
-        }
+        registro = formatDate(result.rows[0].den_datahora_registro);
+        ocorreu = formatDate(result.rows[0].den_datahora_ocorreu);
+        solucao = formatDate(result.rows[0].den_datahora_solucao);
 
-        if(result.rows[0].den_datahora_ocorreu){
-            ocorreu = formatDate(result.rows[0].den_datahora_ocorreu);
-        }else{
-            ocorreu = result.rows[0].den_datahora_ocorreu;
-        }
-
-        if(result.rows[0].den_datahora_solucao){
-            solucao = formatDate(result.rows[0].den_datahora_solucao);
-        }else{
-            solucao = result.rows[0].den_datahora_solucao;
-        }
-        
-        res.render("denuncia/show", {denuncia : result.rows[0], registro : registro, ocorreu : ocorreu, solucao : solucao});
+        res.json({
+            denuncia : result.rows[0], 
+            registro : registro, 
+            ocorreu : ocorreu, 
+            solucao : solucao
+        });
     
     });
     
 })
 
-router.get("/denuncias", function(req, res){
+router.get("/api/denuncias", function(req, res){
     sess = req.session;
 
     if(sess.email){
@@ -42,23 +33,20 @@ router.get("/denuncias", function(req, res){
             knex.select().from("tipo_desordem").then(function(tipos){
                 knex.select().from("desordem").then(function(desordens){
                     // console.log("Desordens " + desordens[2].des_iddesordem);
-                    res.render("denuncia/index", {denuncias : result, filtro : req.query, tipos : tipos, desordens : desordens});            
+                    res.render("denuncia/index", {denuncias : result, filtro : req.query, tipos : tipos, desordens : desordens}); 
+                    
+                    res.json({
+                        denuncias : result, 
+                        filtro : req.query, 
+                        tipos : tipos, 
+                        desordens : desordens
+                    })
                 })
             })
         })
     }else{
-        res.redirect("login");
+        res.send("você precisa se logar");
     }
-});
-
-router.post("/denuncias/delete", function(req,res){
-    sess = req.session
-
-    knex('denuncia')
-	.where('den_iddenuncia', req.body.id_denuncia)
-	.del().then(function(){
-		res.redirect("/denuncias");
-	})
 })
 
 router.post("/denuncias", function(req, res){

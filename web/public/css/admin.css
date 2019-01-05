@@ -24,3 +24,7 @@ header, main, footer {
     padding-left: 0;
   }
 }
+
+#modal1{
+  padding: 10px;
+}

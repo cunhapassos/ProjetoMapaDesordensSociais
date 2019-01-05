@@ -5,7 +5,6 @@
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "bulma": "^0.7.1",
     "consign": "^0.1.6",
     "ejs": "^2.5.9",
     "express": "^4.16.3",
@@ -20,7 +19,6 @@
     "nodemon": "^1.17.3",
     "npm": "^6.0.0",
     "pg": "^7.4.1",
-    "semantic-ui": "^2.3.3",
     "socket.io": "^2.1.1",
     "tablesorter": "^2.30.7",
     "url": "^0.11.0"

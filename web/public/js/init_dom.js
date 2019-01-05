@@ -8,12 +8,4 @@ $(document).ready(function(){
 
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-
-	$('.sidenav').sidenav();
-	$('.collapsible').collapsible();
-	$('select').formSelect();
-
-})
-
 
