@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="br.df.brasilia.unb.cic.todeolho.FragmentConfiguracoes">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/configuracoes_notificacoes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="@string/sim"
+            android:textOff="@string/nao"
+            android:text="@string/notificacoes"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/configuracoes_gps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="@string/sim"
+            android:textOff="@string/nao"
+            android:layout_marginTop="20dp"
+            android:text="Permitir uso do gps"
+            app:layout_constraintTop_toBottomOf="@id/configuracoes_notificacoes"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/configuracoes_avancado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/configuracoes_gps"
+            android:text="@string/avancado"/>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/configuracoes_avancadas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/configuracoes_avancado"
+            android:visibility="gone"
+            android:layout_marginTop="20dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/configuracoes_idioma"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/idioma"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/configuracao_emails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/prompt_email"
+                app:layout_constraintTop_toBottomOf="@id/configuracoes_idioma"
+                android:layout_marginTop="20dp"/>
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+
+
+</android.support.v4.widget.NestedScrollView>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.df.brasilia.unb.cic.todeolho.ActivityHome">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/home_background"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/sign"
+        android:scaleType="centerInside"
+        android:layout_marginTop="80dp"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/home_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/home_background"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/intro_text"
+        android:textAlignment="center"
+        />
+
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/home_mapa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="40dp"
+        app:layout_constraintTop_toBottomOf="@id/home_intro"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:backgroundTint="@color/purpleDark"
+        android:textColor="@color/white"
+        android:text="@string/nav_map"
+        android:onClick="irParaMapa"
+        />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/home_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        app:layout_constraintTop_toBottomOf="@id/home_mapa"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:backgroundTint="@color/purpleDark"
+        android:text="@string/cadastro_denuncia"
+        android:textColor="@color/white"
+        android:onClick="adicionarDenuncia"
+        />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/home_lista"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        app:layout_constraintTop_toBottomOf="@id/home_add"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:backgroundTint="@color/purpleDark"
+        android:text="Desordens já Mapeadas"
+        android:textColor="@color/white"
+        android:onClick="listarDenuncias"
+        />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/home_perfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        app:layout_constraintTop_toBottomOf="@id/home_lista"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:backgroundTint="@color/purpleDark"
+        android:text="@string/profile"
+        android:textColor="@color/white"
+        android:onClick="visualisarPerfil"
+        />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        app:fontFamily="@font/dosis"
+        android:textSize="13dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@id/home_perfil"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Entrar"
+        android:id="@+id/home_login_logout"
+        android:textColor="@color/colorPrimary"/>
+
+
+
+
+
+
+</android.support.constraint.ConstraintLayout>

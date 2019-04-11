@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.df.brasilia.unb.cic.todeolho.ActivityAddDisorder">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/add_disorder_label_cadastro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:fontFamily="@font/dosis_regular"
+            android:text="@string/cadastro_denuncia"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/add_disorder_tipo_desordem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/desordem_tipo"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/add_disorder_label_cadastro"/>
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/add_disorder_tipo_desordem_select"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/sipiner_border"
+            app:layout_constraintTop_toBottomOf="@id/add_disorder_tipo_desordem">
+
+        </android.support.v7.widget.AppCompatSpinner>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/add_disorder_label_descricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/descricao"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/add_disorder_tipo_desordem_select"/>
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/add_disorder_descricao"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/input_border"
+            app:layout_constraintTop_toBottomOf="@id/add_disorder_label_descricao"
+            />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/add_disorder_label_local"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/local"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/add_disorder_descricao"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/add_disorder_local"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:text="@string/local_sel"
+            app:layout_constraintTop_toBottomOf="@id/add_disorder_label_local"
+            android:onClick="selecionarLocal"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/add_disorder_local_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/add_disorder_local"/>
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/add_disorder_label_anonima"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_denuncia_anonima"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/add_disorder_local_info"
+            />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/add_disorder_anonima"
+            app:layout_constraintTop_toBottomOf="@id/add_disorder_label_anonima"
+            android:text="@string/label_denuncia_anonima"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/add_disorder_time_picker"
+            android:layout_marginTop="20dp"
+            android:text="@string/hora_ocorrido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="showTimePickerDialog"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/add_disorder_anonima"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/add_disorder_date_picker"
+            android:layout_marginTop="20dp"
+            android:text="@string/data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="showDatePickerDialog"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/add_disorder_anonima"
+            app:layout_constraintLeft_toRightOf="@id/add_disorder_time_picker"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/add_disorder_date_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/add_disorder_date_picker"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/add_disorder_time_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/add_disorder_date_info"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/add_disorder_label_imagem"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/imagem"
+            app:layout_constraintTop_toBottomOf="@id/add_disorder_time_info"/>
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/add_disorder_image_input"
+            android:src="@drawable/ic_image_black_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxHeight="300dp"
+            android:maxWidth="300dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:onClick="choseImageToUpload"
+            app:layout_constraintTop_toBottomOf="@id/add_disorder_label_imagem"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:text="@string/salvar"
+            app:layout_constraintTop_toBottomOf="@id/add_disorder_image_input"
+            android:onClick="salvar"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/upload"/>
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+
+</android.support.v4.widget.NestedScrollView>

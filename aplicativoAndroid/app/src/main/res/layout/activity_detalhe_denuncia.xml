@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.df.brasilia.unb.cic.todeolho.ActivityDetalheDenuncia"
+    android:padding="30dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/detalhe_denuncia_imagem"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            />
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/detalhe_denuncia_desordem_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/detalhe_denuncia_imagem"
+            android:layout_marginTop="20dp"
+            android:textSize="12sp"
+            android:text="Tipo de Desordem"
+            app:fontFamily="@font/dosis"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/detalhe_denuncia_desordem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/detalhe_denuncia_desordem_label"
+            android:textSize="18sp"
+            app:fontFamily="@font/dosis_bold"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/detalhe_denuncia_descricao_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/detalhe_denuncia_desordem"
+            android:layout_marginTop="20dp"
+            android:text="Descrição"
+            android:textSize="12sp"
+            app:fontFamily="@font/dosis"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/detalhe_denuncia_descricao"
+            app:layout_constraintTop_toBottomOf="@id/detalhe_denuncia_descricao_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            app:fontFamily="@font/dosis_bold"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/detalhe_denuncia_status_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/detalhe_denuncia_descricao"
+            android:layout_marginTop="20dp"
+            android:text="Status"
+            android:textSize="12sp"
+            app:fontFamily="@font/dosis"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/detalhe_denuncia_status"
+            app:layout_constraintTop_toBottomOf="@id/detalhe_denuncia_status_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            app:fontFamily="@font/dosis_bold"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/detalhe_denuncia_confiabilidade_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/detalhe_denuncia_status"
+            android:text="Confiabilidade"
+            android:layout_marginTop="20dp"
+            android:textSize="12sp"
+            app:fontFamily="@font/dosis"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/detalhe_denuncia_confiabilidade"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/detalhe_denuncia_confiabilidade_label"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            app:fontFamily="@font/dosis_bold"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/detalhe_denuncia_usuario_label"
+            android:layout_width="wrap_content"
+            android:text="Usuário"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/detalhe_denuncia_confiabilidade"
+            android:layout_marginTop="20dp"
+            android:textSize="12sp"
+            app:fontFamily="@font/dosis"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/detalhe_denuncia_usuario"
+            app:layout_constraintTop_toBottomOf="@id/detalhe_denuncia_usuario_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            app:fontFamily="@font/dosis_bold"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/detalhe_denuncia_local_label"
+            android:text="Local"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/detalhe_denuncia_usuario"
+            android:layout_marginTop="20dp"
+            android:textSize="12sp"
+            app:fontFamily="@font/dosis"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/detalhe_denuncia_local"
+            app:layout_constraintTop_toBottomOf="@id/detalhe_denuncia_local"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            app:fontFamily="@font/dosis_bold"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+
+
+
+</android.support.v4.widget.NestedScrollView>

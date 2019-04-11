@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">todeolho</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="profile">Perfil</string>
+    <string name="config">Configurações</string>
+    <string name="share">Compartilhar</string>
+    <string name="login">Entrar</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <string name="senha_diferente">As senhas devem coincidir!</string>
+    <string name="login_curto">Deve ter pelo menos 4 caracteres!</string>
+
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Entrar</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="nav_map">Mapa das desordens</string>
+    <string name="nav_list">Desordens Cadastradas</string>
+    <string name="nav_forum">Fórum de dúvidas</string>
+    <string name="nav_info">Informações gerais</string>
+    <string name="nav_profile">Perfil</string>
+    <string name="nav_config">Configurações</string>
+    <string name="info_tutorial_message">Olá! Seja bem vindo ao melhor aplicativo de mapeamento de desordens! Para verificar as desordens ja cadastradas abra o menu e navegue até \'perto de mim\', ou abra o mapa. Para cadastrar uma nova desordem basta entrar no mapa e clicar o icone de adicionar.</string>
+    <string name="info_frequent_questions">Duvidas frequentes</string>
+    <string name="descricao">Descrição</string>
+    <string name="imagem">Imagem</string>
+    <string name="salvar">Salvar</string>
+    <string name="cadastro_denuncia">Informe uma desordem!</string>
+    <string name="label_denuncia_anonima">Denúncia anonima!</string>
+    <string name="hora_ocorrido">Hora do Ocorrido!</string>
+    <string name="perfil_usuario">Anônimo</string>
+    <string name="data">Data do ocorrido!</string>
+    <string name="desordem_tipo">Qual o tipo de desordem?</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="notificacoes">Ativar notificações</string>
+    <string name="avancado">Avançado</string>
+    <string name="idioma">Idioma</string>
+    <string name="title_lista_desordens">Desordens já mapeadas perto de você</string>
+    <string name="dummy">dummy</string>
+    <string name="nome">nome</string>
+    <string name="senha">senha</string>
+    <string name="confirm">Confirma Senha</string>
+    <string name="cpf">cpf</string>
+    <string name="nascimento">nascimento</string>
+    <string name="telefone">telefone</string>
+    <string name="cadastro_texto">Para se cadastrar favor informe os dados</string>
+    <string name="foto">Foto</string>
+    <string name="cadastre">cadastre-se</string>
+    <string name="sair">Sair</string>
+    <string name="intro_text">Ajude a sua cidade a prosperar! \n Seja um informante consciente!</string>
+    <string name="local">Local</string>
+    <string name="local_sel">Selecionar Local</string>
+    <string name="log">login</string>
+    <string name="login_text">Entre ou cadastre-se para fazer uma denúncia</string>
+
+</resources>
