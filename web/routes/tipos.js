@@ -57,6 +57,35 @@ router.post("/tipos/delete", function(req,res){
 	})
 })
 
+router.get("/tipos/:id/edit", function(req,res){
+	sess =req.session;
 
+	if(sess.email){
+		var id = req.params.id;
+		var orgaos;
+
+		knex('tipo_desordem').where({tde_idtipo_desordem : id}).select().then(function(found){
+			res.render("tipo/update", {tipo : found[0]})
+		});
+	}else{
+		res.redirect("../../login");
+	}
+	// res.render("desordem_edit");
+})
+
+router.put("/tipos/:id",function(req,res){
+
+	knex('tipo_desordem')
+	.where('tde_idtipo_desordem',req.params.id)
+	.update({
+	  tde_nome: req.body.nome,
+	  tde_descricao: req.body.descricao
+	}).then(function(){
+		res.redirect("../../tipos");
+	}).catch(function(error){
+		console.log(error);
+		res.redirect("/tipos/"+ req.params.id + "/edit");
+	})
+})
 
 module.exports = router;

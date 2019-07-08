@@ -5,37 +5,18 @@ db = config.database;
 
 var knex = require('knex')(db);
 
-router.get("/api/tipos", function(req,res){
-	sess = req.session;
+router.get("/tipos", function(req,res){
+
     var tipos;
-
-    if(sess.email){
-
-        knex.select().from("tipo_desordem").then(function(result){
-            tipos = result;
-            res.json({tipos : tipos});
-        })
-
-    }else{
-        res.redirect("login");
-    }
+    knex.select().from("tipo_desordem").then(function(result){
+        tipos = result;
+        res.json({tipos : tipos});
+    })
 
 });
 
-router.get("/api/tipos/new", function(req,res){
-    sess = req.session;
-    
-    if(sess.email){
-        res.render("tipo/create");
-    }
-    else{
-        res.redirect("../login");
-    }
-})
-
 router.post("/tipos", function(req,res){
-    sess = req.session;
-
+  
     knex('tipo_desordem').insert({
 		tde_nome : req.body.nome,
 		tde_descricao : req.body.descricao

@@ -12,12 +12,10 @@
                 <select name="filtro_desordem" onchange="this.form.submit();">
                     <option></option>
                     <option value="todas">Todas</option>
-                    <% desordens.forEach(function (desordem){ %>
-                        <% tipos.forEach(function (tipo){ %>
-                            <% if(desordem.des_tipo == tipo.tde_idtipo_desordem){ %>
-                            <option value="<%= desordem.des_iddesordem %>"><%= tipo.tde_nome %></option>
-                            <% } %>
-                        <% }) %>
+                    <% tipos.forEach(function (tipo){ %>
+                       
+                        <option value="<%= tipo.tde_idtipo_desordem %>"><%= tipo.tde_nome %></option>
+    
                     <% }) %>
                 </select>
                 </div>
@@ -33,30 +31,28 @@
                         <th>Nível de Confiabilidade</th>
                         <th>Descrição</th>
                         <th>Anonimato</th>
+                        <% if(sess.tipo == 3){ %>
                         <th>Excluir</th>
+                        <% } %>
                     </tr>
                 </thead>
                 <tbody>
                     <% denuncias.forEach(function (denuncia){ %>
-                        <% if(denuncia.den_iddesordem  == filtro.filtro_desordem || filtro.filtro_desordem == null || filtro.filtro_desordem == "todas"){ %>
+                        <% if(denuncia.tde_idtipo_desordem  == filtro.filtro_desordem || filtro.filtro_desordem == null || filtro.filtro_desordem == "todas"){ %>
                             <tr class="center aligned">
-                                <td><a href="../admin?denuncia=<%= denuncia.den_iddenuncia %>"><%= denuncia.den_iddenuncia %></a></td>
-                                <% desordens.forEach(function (desordem){ %>
-                                    <% tipos.forEach(function (tipo){ %>
-                                    <% if(desordem.des_iddesordem == denuncia.den_iddesordem && tipo.tde_idtipo_desordem == desordem.des_tipo){ %>
-                                        <td><%= tipo.tde_nome %></td>
-                                    <% } %>
-                                <% }) %>
-                            <% }) %>
+                            <td><a href="../admin?denuncia=<%= denuncia.den_iddenuncia %>"><%= denuncia.den_iddenuncia %></a></td>       
+                            <td><%= denuncia.tde_nome %></td>
                             <td><%= denuncia.den_status %></td>
                             <td><%= denuncia.den_nivel_confiabilidade %></td>
                             <td><%= denuncia.den_descricao %></td>
                             <td><%= denuncia.den_anonimato %></td>
+                            <% if(sess.tipo == 3){ %>
                             <td>
                                 <button name="id_denuncia" value=<%= denuncia.den_iddenuncia %> class="ui red button">
                                     Deletar
                                 </button>
                             </td>
+                            <% } %>
                         </td>
                         <% } 
                     })%> 

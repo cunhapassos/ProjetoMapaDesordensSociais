@@ -1,11 +1,14 @@
  <%- include ../templates/sidenav.ejs %>
-
+<script type="text/javascript" src="../../js/moment.min.js"></script>
  <div class="ui pusher">
      <div class="ui container">
         <h1 class="ui dividing header">Área do Gestor</h1>
         <div class="ui top attached tabular menu">
             <a class="item active" data-tab="denuncias">Denúncias</a>
             <a class="item" data-tab="orgaos">Órgãos</a>
+            <a class="item" data-tab="graficos">Denúncias-Contagem</a>
+            <!-- <a class="item" data-tab="den_des">Denúncias-Desordens</a> -->
+            <a class="item" data-tab="den_org">Denúncias-Órgãos</a>
         </div>
         <div class="ui bottom attached active tab segment" data-tab="denuncias">
             <table id="desordemGestor" class="tablesorter ui celled table uitable">
@@ -51,11 +54,160 @@
                     <%}%>
                 </tbody>
             </table>
-        </div>    
+        </div>
+        <!-- <div class="ui bottom attached tab segment" data-tab="den_des">
+            <canvas id="den_des"></canvas>
+        </div> -->
+        <div class="ui bottom attached tab segment" data-tab="den_org">
+            <canvas id="den_org"></canvas>
+        </div>
+        <div class="ui bottom attached tab segment" data-tab="graficos">
+            <canvas id="graficoDesordensTempo" width="400" height="400"></canvas>
+        </div>
      </div>
  </div>
-
+<br><br>
 <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../../js/semantic.js"></script>
 <script type="text/javascript" src="../../js/jquery.tablesorter.js"></script>
 <script type="text/javascript" src="../../js/gestor/init.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script>
+    // var ctx_den_des = document.getElementById('den_des').getContext('2d');
+    var ctx_den_org = document.getElementById('den_org').getContext('2d');
+
+    var orgaos = <%-JSON.stringify(orgaos)%>;
+    var denuncias  = <%-JSON.stringify(denuncias)%>;
+    var desordens = <%-JSON.stringify(desordens)%>;
+    var ctipos = [];
+    // console.log("orgaoresult : ");
+
+    
+    desordens.forEach(function(desordem){
+        ctipos.push([desordem.des_iddesordem, desordem.des_descricao, 0]);
+    })
+    
+    denuncias.forEach(function (denuncia){
+        for(var i =0; i < ctipos.length; i++){
+            if(denuncia.den_iddesordem == ctipos[i][0]){
+                ctipos[i][2]++;
+            }
+        }
+    })
+
+    var chart_desordens = [];
+    var chart_qtd = [];
+    var chart_orgaos = [];
+    var chart_qtd_orgaos = []
+    
+    for(var i =0; i < ctipos.length; i++){
+        chart_desordens.push(ctipos[i][1]);
+        chart_qtd.push(ctipos[i][2]);
+    }
+
+    orgaos.forEach(function(orgao){
+        chart_orgaos.push(orgao.org_nome);
+        chart_qtd_orgaos.push(orgao.count_den);
+    })
+//  
+//     new Chart(ctx_den_des, {
+//         type: 'pie',
+//         data: {
+//         labels: chart_desordens,
+//         datasets: [{
+//             label: "Quantidade de Denúncias",
+//             backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+//             data: chart_qtd
+//         }]
+//         },
+//         options: {
+//             title: {
+//                 display: true,
+//                 text: 'Porcentagem de Denúncias relacionadas aos Órgãos'
+//             }
+//         }
+//     });
+
+    new Chart(ctx_den_org, {
+        type: 'pie',
+        data: {
+        labels: chart_orgaos,
+        datasets: [{
+            label: "Quantidade de Denúncias",
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+            data: chart_qtd_orgaos
+        }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Porcentagem de Denúncias relacionadas aos Órgãos'
+            }
+        }
+    });
+</script>
+<script>
+        var ctx_den_cont = document.getElementById("graficoDesordensTempo").getContext('2d');
+        var denunciasPorHora = <%-JSON.stringify(denunciasPorHora)%>;
+        var graficoDesordensTempo = new Chart(ctx_den_cont, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{ 
+                        data: [],
+                        label: "Denúncias Totais",
+                        borderColor: "#3e95cd",
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                title: {
+                display: true,
+                text: 'Número de denúncias por tempo'
+                },
+                scales: {
+                    xAxes: [{
+                        type:'time',
+                        time: {
+                            parser: 'YYYY-MM-DD HH:mm:ss',
+                            unit: 'month',
+                            min:denunciasPorHora[0].den_datahora_registro,
+                            max:denunciasPorHora[denunciasPorHora.length-1].den_datahora_registro
+                        }
+                    }]
+                }
+            },
+            plugins: [{
+                beforeInit: function(chart) {
+                    var time = chart.options.scales.xAxes[0].time,
+                        timeDiff = moment(time.max).diff(moment(time.min), 'months');
+                    for (i = 0; i <= timeDiff; i++) {
+                        var _label = moment(time.min).add(i, 'months').format('YYYY-MM-DD HH:mm:ss');
+                        chart.data.labels.push(_label);
+                    }
+                }}, 
+                {
+                beforeInit: function(chart){
+                    var denunciasPorMes = [];
+                    var mesCount = 0;
+                    var denunciasCount = 0;
+                    var mesAtual = moment(denunciasPorHora[0]["den_datahora_registro"]).month();
+                    for (i = 0; i < denunciasPorHora.length; i++){
+                        console.log(denunciasPorHora[i]["den_datahora_registro"])
+                        if(moment(denunciasPorHora[i]["den_datahora_registro"]).month() == mesAtual){
+                            denunciasCount++;
+                            console.log(denunciasCount);
+                        } else {
+                            denunciasPorMes[mesCount] = denunciasCount;
+                            mesCount++;
+                            denunciasCount = 1;
+                            mesAtual = moment(denunciasPorHora[i]["den_datahora_registro"]).month();
+                        }
+                    }
+                    denunciasPorMes[mesCount] = denunciasCount;
+                    chart.data.datasets[0].data = denunciasPorMes;
+                }
+            }]    
+        });
+</script>    

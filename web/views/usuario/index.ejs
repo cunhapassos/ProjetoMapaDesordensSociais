@@ -1,7 +1,9 @@
 
 	<%- include ../templates/sidenav.ejs %>
 	
+	<img src="/uploads/denuncia/0d6b5714de4d353d837e2be2230f728a.jpg" style="width: 100%;" alt="">
 	<div class="ui pusher">	
+
 		<div>
 			<h1 class="ui dividing header">Usuários Cadastrados</h1>
 		</div>
@@ -27,10 +29,11 @@
 				  	  <th>Picture</th>
 			          <th>Login</th>
 			          <th>Email</th>
-			          <th>Nome</th>
 			          <th>Confiabilidade</th>
-			          <th>Deletar</th>
-					  <th>Editar</th>
+					  <% if(sess.tipo == 3){ %>
+						<th>Deletar</th>
+						<th>Editar</th>
+					  <% } %>
 					  <th>Ver</th>
 			      </tr>
 			    </thead>
@@ -47,6 +50,7 @@
 							<img class="img_usuario responsive-img" src="../images/usuarios/no-image.png" width="50" />
 							</div>
 							</td>
+							<% break; %>
 						<% } %>
 						<% if(fotos[j].fot_idusuario == usuarios[i].usu_idusuario){ %>
 							<td><img class="img_usuario responsive-img" src="../images/usuarios/<%= fotos[j].fot_idusuario %>.jpg" width="50" /></td>
@@ -54,8 +58,8 @@
 					<% } %>
 			        <td><%= usuarios[i].usu_login %></td>
 			        <td><%= usuarios[i].usu_email %></td>
-			        <td><%= usuarios[i].usu_nome %></td>
 			    	<td><%= usuarios[i].usu_confiabilidade %></td>
+					<% if(sess.tipo == 3){ %>
 			    	<td>
 			    		<button name="id_usuario" value=<%= usuarios[i].usu_idusuario %> class="ui red button">
 			    			Deletar
@@ -66,6 +70,7 @@
 			    			Editar
 			    		</a>
 					</td>
+					<% } %>
 					<td>
 			    		<a name="id_usuario" href="/usuarios/<%= usuarios[i].usu_idusuario %>/show" class="ui gray button">
 			    			Ver

@@ -4,7 +4,9 @@
 	<div class="ui pusher">
 		<div>
 			<h1 style="float: left;" class="ui dividing header">Tipos de Desordem</h1>
+			<% if(sess.tipo == 3){ %>
 			<a style="float: right;" href="/tipos/new" class="ui secondary basic button">Adicionar</a>
+			<% } %>
 		</div>
 		<form onsubmit=" return validate(this);" method="post" action="/tipos/delete">
 			<table class="ui celled table uitable">
@@ -14,8 +16,10 @@
 			          <th>Id</th>
 					  <th>Nome</th>
 			          <th>Descrição</th>
+					  <% if(sess.tipo == 3){ %>
 					  <th>Remover</th>
 					  <th>Editar</th>
+					  <% } %>
 			      </tr>
 			    </thead>
 
@@ -26,10 +30,11 @@
 			    	<td><%= tipos[i].tde_idtipo_desordem%></td>
                     <td><%= tipos[i].tde_nome %></td>
                     <td><%= tipos[i].tde_descricao %></td>
-
+					<% if(sess.tipo == 3){ %>
 			    	<td><button name="id_tipo" value=<%= tipos[i].tde_idtipo_desordem %> class="ui red button">Excluir</button></td>
 					
 					<td><a name="id_usuario" href="/tipos/<%= tipos[i].tde_idtipo_desordem %>/edit" class="ui gray button">Editar</a></td>
+					<% } %>
 			      </tr>
 
 			    <% } %>

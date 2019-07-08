@@ -1,29 +1,26 @@
 var express = require('express');
 var url = require('url');
+var cors = require('cors');
 var config = require("../config/db.js");
 var router = express.Router({mergeParams : true});
 db = config.database;
 
 var knex = require('knex')(db);
+router.use(cors());
 
+router.get("/desordem/new", function(req,res){
 
-router.get("/api/desordem/new", function(req,res){
-	sess = req.session;
+	var orgaos_result;
 
-	if(sess.email){
-		var orgaos_result;
-
-		knex.select().from('org_orgao').then(function(result){
-			knex.select().from('tipo_desordem').then(function(tipos){
-                res.json({
-                    orgaos : result, 
-                    tipos : tipos
-                })
+	knex.select().from('org_orgao').then(function(result){
+		knex.select().from('tipo_desordem').then(function(tipos){
+			res.json({
+				orgaos : result, 
+				tipos : tipos
 			})
-		})		
-	}else{
-		res.send("voce precisa se logar");
-	}
+		})
+	})		
+	
 });
 
 router.post("/desordem/create",function(req,res){
@@ -68,55 +65,45 @@ router.post("/desordem/delete", function(req,res){
 	})
 })
 
-router.get("/api/desordens/:id/edit", function(req,res){
-	sess =req.session;
+router.get("/desordens/:id/edit", function(req,res){
+	var id = req.params.id;
+	var orgaos;
 
-	if(sess.email){
-		var id = req.params.id;
-		var orgaos;
+	knex.select().from('org_orgao').then(function(found){
+		orgaos = found;
+	})
 
-		knex.select().from('org_orgao').then(function(found){
-			orgaos = found;
+	knex('desordem').where({des_iddesordem : id}).select().then(function(found){
+		res.json({
+			desordem : found[0], 
+			orgaos : orgaos
 		})
+	});
 
-		knex('desordem').where({des_iddesordem : id}).select().then(function(found){
-            res.json({
-                desordem : found[0], 
-                orgaos : orgaos
-            })
-		});
-	}else{
-		res.redirect("../../login");
-	}
 	// res.render("desordem_edit");
 })
 
-router.get("/api/desordens", function(req,res){
-	sess =req.session;
+router.get("/desordens", function(req,res){
 	var tipos;
 	var orgaos;
 	
-	if(sess.email){
-
 		
-		knex.select().from("tipo_desordem").then(function(found){
-			tipos = found;
-			knex.select().from("desordem").then(function(desordens){
-					knex.select().from("org_orgao").then(function(orgaos){
-                        res.json({
-                            desordens : desordens, 
-                            tipos : tipos, 
-                            orgaos : orgaos, 
-                            failed : req.query.failed, 
-                            id_desordem : req.query.id_desordem
-                        })
+	knex.select().from("tipo_desordem").then(function(found){
+		tipos = found;
+		knex.select().from("desordem").orderBy("des_descricao").then(function(desordens){
+				knex.select().from("org_orgao").then(function(orgaos){
+					res.json({
+						desordens : desordens, 
+						tipos : tipos, 
+						orgaos : orgaos, 
+						failed : req.query.failed, 
+						id_desordem : req.query.id_desordem
 					})
-			})
+				})
 		})
+	})
 
-	}else{
-		res.redirect("../../login");
-	}
+
 })
 
 router.put("/desordens/:id",function(req,res){
@@ -135,5 +122,36 @@ router.put("/desordens/:id",function(req,res){
 		res.redirect("/desordens/"+ req.params.id);
 	})
 })
+
+router.post("/tipodedesordem", function(req, res){
+
+
+    knex.select().from("desordem").orderBy("des_descricao").then(function(tipos){
+                
+        res.send(tipos);            
+    })
+
+});
+
+router.post("/inserir/tipodedesordem", function(req, res){
+
+    var tipo = req.body.tipo;
+    var orgao = req.body.orgao;
+    var descricao = req.body.descricao;
+
+    console.log(tipo);
+    console.log(orgao);
+    console.log(descricao);
+
+    knex('desordem').insert({
+        des_tipo: tipo,
+        des_descricao: descricao,
+        org_idorgao: orgao
+    }).then(function(){
+        res.send({sucesso: 'true'});
+    }).catch(function(error){
+        res.send({sucesso: 'ERRO'});
+    });
+});
 
 module.exports = router;

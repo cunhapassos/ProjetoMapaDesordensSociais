@@ -6,6 +6,21 @@
         
         
         <h3>Denúncia nº <%= denuncia.den_iddenuncia %></h3>
+
+        <form method="POST" action="/denuncias/denuncia-status">
+            <div class="ui form">
+                <div class="field">
+                    <input name="denunciaid" style="display: none;" value="<%= denuncia.den_iddenuncia %>">
+                    <label>Mudar Status Denúncia</label>
+                    <select onchange="this.form.submit();" name="status" class="ui dropdown">
+                        <option>--------------</option>
+                        <option value="Solucionado">Solucionado</option>
+                        <option value="Pendente">Pendente</option>
+                        <option value="Sem solução">Sem solução</option>
+                    </select>
+                </div>
+            </div>
+        </form>
         
         <table class="ui celled table uitable">
             <tr>

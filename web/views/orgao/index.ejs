@@ -5,7 +5,9 @@
 		
 		<div>
 			<h1 style="float: left;" class="ui dividing header">Órgãos</h1>
+			<% if(sess.tipo == 3){ %>
 			<a style="float: right;" href="/orgaos/new" class="ui secondary basic button">Adicionar</a>
+			<% } %>
 		</div>
 
 		<form onsubmit=" return validate(this);" method="post" action="/orgaos/delete">
@@ -15,8 +17,10 @@
 			      <tr class="center aligned">
 			          <th>Nome</th>
 			          <th>Descrição</th>
+					  <% if(sess.tipo == 3){ %>
 			          <th>Deletar</th>
 					  <th>Editar</th>
+					  <% } %>
 					  <th>Ver</th>
 			      </tr>
 			    </thead>
@@ -27,10 +31,11 @@
 			      <tr class="center aligned">
 			        <td><%= orgaos[i].org_nome %></td>
 			        <td><%= orgaos[i].org_descricao %></td>
+					<% if(sess.tipo == 3){ %>
 			    	<td><button name="id_orgao" value=<%= orgaos[i].org_idorgao %> class="ui red button">Excluir</button></td>
 					
 					<td><a name="id_desordem" href="/orgaos/<%= orgaos[i].org_idorgao %>/edit" class="ui gray button">Editar</a></td>
-						
+					<% } %>
 					<td><a name="id_usuario" href="/orgaos/<%= orgaos[i].org_idorgao %>/show" class="ui gray button">Ver</a></td>
 			      </tr>
 

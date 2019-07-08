@@ -72,14 +72,20 @@ router.get("/desordens/:id/edit", function(req,res){
 	if(sess.email){
 		var id = req.params.id;
 		var orgaos;
+		var tipos;
 
 		knex.select().from('org_orgao').then(function(found){
 			orgaos = found;
 		})
 
-		knex('desordem').where({des_iddesordem : id}).select().then(function(found){
-			res.render("desordem/update", {desordem : found[0], orgaos : orgaos})
-		});
+		knex.select().from('tipo_desordem').then(function(foundt){
+			tipos = foundt;
+		})
+
+		knex.from('desordem').innerJoin('tipo_desordem', 'desordem.des_tipo', 'tipo_desordem.tde_idtipo_desordem').where({des_iddesordem : id}).then(function(found){
+			res.render("desordem/update", {desordem : found[0], orgaos : orgaos, tipos : tipos})
+		})
+
 	}else{
 		res.redirect("../../login");
 	}

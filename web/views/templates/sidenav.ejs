@@ -9,12 +9,14 @@
     
     <title>Sistema</title>
 </head>
-<body>
+<body style="height: 100% !important;">
   <% if (sess.login){ %>
-  <div class="ui visible left sidebar inverted vertical menu">
+  <div class="ui visible left sidebar inverted vertical menu" id="sidenav-admin">
     
     <div class="item">
-      <div class="header"><h4>Sistema Gerenciador Desordem</h4></div>
+      <a href="/admin"><img src="../../images/AssinaturaAlternativaBranca.png" style="display: block;
+    margin-right: auto; width: 100%; height: 100%; padding-bottom: 8px;" alt=""></a>
+      <div class="header"><h4><a id="link-home" href="/admin">Sistema Gerenciador de Desordens</a></h4></div>
       <div class="menu">
         <a class="item"><%= sess.login %></a>
         <a class="item" href="/logout" >Sair</a>
@@ -24,7 +26,7 @@
     <a href="/usuarios" class="item">
       Usuários
     </a>
-    <a href="/admin" class="item">
+    <a href="/mapa" class="item">
       Mapa
     </a>
     <a href="/desordens" class="item">
@@ -34,7 +36,7 @@
       Órgãos
     </a>
     <a href="/denuncias" class="item">
-      Denúnicas
+      Denúncias
     </a>
     <a href="/tipos" class="item">
       Tipos de desordem
@@ -52,14 +54,15 @@
     <% } %>
   <% } %>
   <% if (!sess.login){ %>
-    <div class="ui menu inverted">
-      <div class="center menu">
-        <a class="item">Sistema Gerenciador de Desordens</a>
-      </div>
-      <div class="right menu">
+    <div class="ui visible right sidebar inverted vertical menu">
+    
+    <div class="item">
+      <div class="header"><h4><a id="link-home" href="/admin">Sistema Gerenciador Desordem</a></h4></div>
+      <div class="menu">
         <a href="/login" class="item">Login</a>
       </div>
     </div>
+    <br>
   <% } %>
 
   </div>

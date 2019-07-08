@@ -5,18 +5,6 @@ db = config.database;
 
 var knex = require('knex')(db);
 
-router.get("/api/orgaos/new", function(req,res){
-	sess = req.session;
-
-	if(sess.email){
-
-		res.render("orgao/create");
-
-	}else{
-		res.redirect("../login");
-	}
-});
-
 router.post("/orgaos",function(req,res){
 	
 	var nome = req.body.nome;
@@ -45,47 +33,31 @@ router.post("/orgaos/delete", function(req,res){
 	})
 })
 
-router.get("/api/orgaos/:id/edit", function(req,res){
-	sess =req.session;
+router.get("/orgaos/:id", function(req,res){
 
-	if(sess.email){
-		var id = req.params.id;
-		var orgaos;
-
-		knex('org_orgao').where({org_idorgao : id}).select().then(function(found){
-			res.json({orgao : found[0]})
-		});
-	}else{
-		res.redirect("../../login");
-	}
-	// res.render("desordem_edit");
-})
-
-router.get("/api/orgaos", function(req,res){
-	sess =req.session;
-
-	if(sess.email){
-
-		knex.select().from("org_orgao").then(function(orgaos){
-			res.json({orgaos : orgaos});
-		})
-	}else{
-		res.redirect("../../login");
-	}
-})
-
-router.get("/api/orgaos/:id/show", function(req,res){
-	sess =req.session;
 	var id = req.params.id;
-	
-	if(sess.email){
+	var orgaos;
 
-		knex('org_orgao').where({org_idorgao : id}).select().then(function(found){
-			res.json({orgao : found[0]})
-		});
-	}else{
-		res.redirect("../../login");
-	}
+	knex('org_orgao').where({org_idorgao : id}).select().then(function(found){
+		res.json({orgao : found[0]})
+	});
+
+})
+
+router.get("/orgaos", function(req,res){
+
+	knex.select().from("org_orgao").then(function(orgaos){
+		res.json({orgaos : orgaos});
+	})
+
+})
+
+router.get("/orgaos/:id/show", function(req,res){
+	var id = req.params.id;
+
+	knex('org_orgao').where({org_idorgao : id}).select().then(function(found){
+		res.json({orgao : found[0]})
+	});
 })
 
 router.put("/orgaos/:id",function(req,res){
